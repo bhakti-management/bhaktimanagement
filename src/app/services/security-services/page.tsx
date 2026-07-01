@@ -83,7 +83,7 @@ export default function SecurityServicesPage() {
         style={{ 
           backgroundImage: 'linear-gradient(rgba(12,24,36,0.75), rgba(12,24,36,0.75)), url("/assets/security-services-hero.jpg")',
           backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundPosition: '50% 20%',
         }}
       >
         <Container className="relative z-10 text-left">

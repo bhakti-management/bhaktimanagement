@@ -11,9 +11,10 @@ export default function AboutHero() {
     >
       {/* Background Image Layer with light transparency overlay */}
       <div 
-        className="absolute inset-0 bg-cover bg-center opacity-15 z-[1] pointer-events-none"
+        className="absolute inset-0 bg-cover opacity-15 z-[1] pointer-events-none"
         style={{
           backgroundImage: 'url("/assets/about-hero.jpg.png")',
+          backgroundPosition: '50% 35%',
         }}
       />
 
