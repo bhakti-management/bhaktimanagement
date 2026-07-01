@@ -11,7 +11,7 @@ export default function Section({ children, className = '', style, id }: Section
   return (
     <section 
       id={id}
-      className={`w-full py-16 md:py-24 box-border ${className}`}
+      className={`w-full py-10 md:py-14 lg:py-16 box-border ${className}`}
       style={style}
     >
       {children}
