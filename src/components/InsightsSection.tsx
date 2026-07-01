@@ -8,19 +8,19 @@ import Section from './Section';
 export default function InsightsSection() {
   const articles = [
     {
-      img: '/assets/staffing-trends.jpg.png',
+      img: '/assets/staffing-trends.jpg.jpg',
       tag: 'COMPLIANCE • 5 MIN READ',
       title: 'The Future of Contractual Staffing in Post-2025 India',
       desc: 'How emerging labor codes are reshaping the way Indian enterprises manage their temporary workforce.'
     },
     {
-      img: '/assets/case-study.jpg.png',
+      img: '/assets/case-study.jpg.jpg',
       tag: 'CASE STUDY • 8 MIN READ',
       title: 'Scaling 2000+ Workers in 30 Days: A Success Story',
       desc: 'A deep dive into the logistical challenges and solutions in high-speed infrastructure projects...'
     },
     {
-      img: '/assets/technology.jpg.png',
+      img: '/assets/technology.jpg.jpg',
       tag: 'TECHNOLOGY • 4 MIN READ',
       title: 'Digital Payroll: 100% Statutory Adherence Guaranteed',
       desc: 'Exploring how automated systems reduce risk for large-scale employers and protect worker...'
