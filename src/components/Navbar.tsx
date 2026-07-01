@@ -8,6 +8,7 @@ export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   const navItems = [
+    { name: 'HOME', path: '/' },
     { 
       name: 'ABOUT US', 
       path: '/about', 
