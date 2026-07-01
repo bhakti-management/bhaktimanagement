@@ -81,7 +81,7 @@ export default function SecurityServicesPage() {
       <section 
         className="w-full relative min-h-[65vh] md:min-h-[75vh] bg-[#0c1824] flex items-center py-16 px-6 box-border"
         style={{ 
-          backgroundImage: 'linear-gradient(rgba(12,24,36,0.75), rgba(12,24,36,0.75)), url("/assets/security-services-hero.jpg.png")',
+          backgroundImage: 'linear-gradient(rgba(12,24,36,0.75), rgba(12,24,36,0.75)), url("/assets/security-services-hero.jpg")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -133,7 +133,7 @@ export default function SecurityServicesPage() {
           <div className="w-full flex justify-center">
             <div className="relative max-w-[460px] w-full aspect-[4/3] overflow-hidden rounded-card shadow-card">
               <img 
-                src="/assets/security-officer.jpg.jpg" 
+                src="/assets/security-officer.jpg" 
                 alt="DGR Security Officer Spec" 
                 className="absolute inset-0 w-full h-full object-cover block" 
               />
