@@ -11,13 +11,11 @@ export default function AboutStorySection() {
         
         {/* LEFT COLUMN: CORPORATE TEAM PORTRAIT */}
         <div className="w-full flex justify-center">
-          <div className="relative max-w-[480px] w-full aspect-[4/3] overflow-hidden rounded-card shadow-card">
-            <img 
-              src="/assets/corporate-team.jpg.png" 
-              alt="BMSPL Corporate Team" 
-              className="absolute inset-0 w-full h-full object-cover block"
-            />
-          </div>
+          <img 
+            src="/assets/corporate-team.jpg.png" 
+            alt="BMSPL Corporate Team" 
+            className="w-full max-w-[480px] h-auto rounded-card shadow-card block"
+          />
         </div>
 
         {/* RIGHT COLUMN: OUR STORY DESCRIPTION CONTENT */}
