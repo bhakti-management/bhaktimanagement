@@ -307,7 +307,7 @@ export default function JobSeekersPage() {
       </Section>
 
       {/* SECTION 5: MASTER RESUME UPLOAD COMPONENT FORM (Frame 28.png) */}
-      <Section id="resume-form" className="bg-white">
+      <Section id="resume-form" className="bg-white scroll-mt-24">
         <Container className="max-w-2xl">
           <div className="rounded-card overflow-hidden shadow-elevated border border-slate-200 w-full box-border">
             

@@ -96,7 +96,7 @@ export default function Navbar() {
         {/* Right: Gold CTA Button (Desktop) & Hamburger Toggle (Mobile) */}
         <div className="flex items-center gap-4 shrink-0">
           <Link 
-            href="/contact#upload-form"
+            href="/job-seekers#resume-form"
             className="hidden sm:inline-block bg-brand-gold text-brand-navy border-none py-2 px-5 font-bold text-[13px] tracking-wide rounded-button hover:brightness-110 shadow-flat z-10 transition-all no-underline"
           >
             HIRE THROUGH BMSPL
@@ -149,7 +149,7 @@ export default function Navbar() {
             </div>
           ))}
           <Link 
-            href="/contact#upload-form"
+            href="/job-seekers#resume-form"
             onClick={() => setMobileMenuOpen(false)}
             className="w-full bg-brand-gold text-brand-navy text-center py-2.5 px-4 font-bold text-[13px] tracking-wide rounded-button hover:brightness-110 shadow-flat transition-all no-underline block mt-2"
           >
