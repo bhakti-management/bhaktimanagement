@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import pool from '../../../../lib/db';
+import pool from '../../../lib/db';
 
 export async function GET() {
   try {
@@ -7,7 +7,7 @@ export async function GET() {
     return NextResponse.json({ 
       success: true, 
       message: 'Database connected successfully!',
-      data: rows 
+      data: rows
     });
   } catch (error) {
     return NextResponse.json({ 
