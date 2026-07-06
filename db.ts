@@ -12,6 +12,9 @@ if (!connectionString) {
 // Create a connection pool for PostgreSQL
 const pool = new Pool({
   connectionString,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
 // Initialize the Prisma pg driver adapter (required by Prisma 7 for direct DB connections)
