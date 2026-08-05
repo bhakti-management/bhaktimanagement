@@ -22,7 +22,6 @@ export default function Navbar() {
       name: 'SERVICES', 
       path: '/services', 
       dropdown: [
-        { name: 'Overview', path: '/services' },
         { name: 'Permanent Staffing', path: '/services/permanent-staffing' },
         { name: 'Contractual Staffing', path: '/services/contractual-staffing' },
         { name: 'Security Services', path: '/services/security-services' },
