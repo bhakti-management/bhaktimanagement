@@ -1,6 +1,7 @@
 "use client";
 
-import React from 'react';
+import React, { Suspense, useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Container from './Container';
 import Section from './Section';
 
@@ -23,10 +24,33 @@ const Vectors = {
   )
 };
 
-export default function ResumeUploadForm() {
+function ResumeUploadFormContent() {
+  const searchParams = useSearchParams();
+  const jobId = searchParams.get('jobId');
+  const jobTitle = searchParams.get('jobTitle');
+
+  const [desiredJobType, setDesiredJobType] = useState('');
+
+  useEffect(() => {
+    if (jobTitle) {
+      const titleLower = jobTitle.toLowerCase();
+      if (titleLower.includes('security') || titleLower.includes('guard') || titleLower.includes('bouncer') || titleLower.includes('protection')) {
+        setDesiredJobType('security');
+      } else if (titleLower.includes('factory') || titleLower.includes('worker') || titleLower.includes('operator') || titleLower.includes('helper') || titleLower.includes('packer') || titleLower.includes('production')) {
+        setDesiredJobType('factory');
+      } else if (titleLower.includes('iti') || titleLower.includes('diploma') || titleLower.includes('electrician') || titleLower.includes('technician') || titleLower.includes('plumber') || titleLower.includes('fitter') || titleLower.includes('trade')) {
+        setDesiredJobType('iti');
+      } else if (titleLower.includes('admin') || titleLower.includes('office') || titleLower.includes('support') || titleLower.includes('assistant') || titleLower.includes('clerk') || titleLower.includes('receptionist')) {
+        setDesiredJobType('admin');
+      } else {
+        setDesiredJobType('');
+      }
+    }
+  }, [jobTitle]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Profile submitted successfully!");
+    alert(`Thank you! Your profile has been submitted successfully for the position: ${jobTitle || 'General Application'}.`);
   };
 
   return (
@@ -37,8 +61,14 @@ export default function ResumeUploadForm() {
           {/* Header Card Band */}
           <div className="bg-brand-navy text-white py-8 px-10 flex justify-between items-center text-left box-border">
             <div className="min-w-0">
-              <h3 className="text-xl font-bold text-white mb-1.5 leading-snug font-sans">Upload Your Resume</h3>
-              <p className="text-[13px] text-slate-400 m-0 leading-normal">Our HR experts will get back to you within 48 working hours.</p>
+              <h3 className="text-xl font-bold text-white mb-1.5 leading-snug font-sans">
+                {jobTitle ? 'Apply for Position' : 'Upload Your Resume'}
+              </h3>
+              <p className="text-[13px] text-slate-400 m-0 leading-normal">
+                {jobTitle 
+                  ? `Position: ${jobTitle} ${jobId ? `(ID: ${jobId})` : ''}` 
+                  : 'Our HR experts will get back to you within 48 working hours.'}
+              </p>
             </div>
             <div className="shrink-0"><Vectors.DocIcon /></div>
           </div>
@@ -81,7 +111,12 @@ export default function ResumeUploadForm() {
 
             <div>
               <label className="text-[11px] font-extrabold text-brand-navy block mb-1.5 uppercase tracking-wider">Desired Job Type *</label>
-              <select className="w-full p-3 border border-slate-300 rounded-button text-[13px] bg-white box-border focus:outline-none focus:border-brand-navy" required>
+              <select 
+                value={desiredJobType}
+                onChange={(e) => setDesiredJobType(e.target.value)}
+                className="w-full p-3 border border-slate-300 rounded-button text-[13px] bg-white box-border focus:outline-none focus:border-brand-navy" 
+                required
+              >
                 <option value="">Select a category</option>
                 <option value="security">Security Personnel</option>
                 <option value="factory">Factory Workers</option>
@@ -106,8 +141,8 @@ export default function ResumeUploadForm() {
               </div>
             </div>
 
-            <button type="submit" className="bg-brand-navy text-white border-none p-4 text-[13px] md:text-sm font-bold rounded-button cursor-pointer flex items-center justify-center gap-2 mt-3 hover:brightness-110 shadow-elevated transition-all uppercase">
-              <span>Submit My Profile</span>
+            <button type="submit" className="bg-brand-navy text-white border-none p-4 text-[13px] md:text-sm font-bold rounded-button cursor-pointer flex items-center justify-center gap-2 mt-3 hover:brightness-110 shadow-elevated transition-all uppercase font-sans">
+              <span>Submit My Application</span>
               <span className="text-brand-gold text-[10px]">▶</span>
             </button>
           </form>
@@ -115,5 +150,17 @@ export default function ResumeUploadForm() {
         </div>
       </Container>
     </Section>
+  );
+}
+
+export default function ResumeUploadForm() {
+  return (
+    <Suspense fallback={
+      <div className="text-center py-20 font-sans text-brand-navy font-semibold">
+        Loading application portal...
+      </div>
+    }>
+      <ResumeUploadFormContent />
+    </Suspense>
   );
 }
