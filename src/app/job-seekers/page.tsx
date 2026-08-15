@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import Container from '@/components/Container';
 import Section from '@/components/Section';
 import ResumeUploadForm from '@/components/ResumeUploadForm';
@@ -157,10 +158,10 @@ export default function JobSeekersPage() {
             
             {/* Action Buttons Row */}
             <div className="flex gap-4 flex-wrap mb-10">
-              <button className="bg-brand-navy text-white border-none py-4 px-8 font-bold text-xs tracking-widest rounded-button hover:brightness-110 shadow-elevated cursor-pointer flex items-center gap-2 uppercase">
+              <Link href="/jobs" className="no-underline bg-brand-navy text-white border-none py-4 px-8 font-bold text-xs tracking-widest rounded-button text-center hover:brightness-110 shadow-elevated transition-all flex items-center gap-2 uppercase">
                 <span>View Current Openings</span>
                 <span className="text-brand-gold text-sm">→</span>
-              </button>
+              </Link>
               <a href="#resume-form" className="no-underline bg-white border border-brand-navy text-brand-navy py-3.5 px-8 font-bold text-xs tracking-widest rounded-button text-center hover:bg-slate-50 transition-colors uppercase">
                 Upload Your Resume
               </a>
@@ -299,9 +300,9 @@ export default function JobSeekersPage() {
                 Kickstart your career with top tier internship and trainee roles across India.
               </p>
             </div>
-            <button className="bg-brand-gold text-brand-navy border-none py-3 px-6 text-xs font-bold rounded-button cursor-pointer shrink-0 hover:brightness-110 transition-all uppercase">
+            <Link href="/jobs" className="no-underline bg-brand-gold text-brand-navy border-none py-3 px-6 text-xs font-bold rounded-button text-center hover:brightness-110 transition-all uppercase shrink-0">
               View Opportunities
-            </button>
+            </Link>
           </div>
 
         </Container>
