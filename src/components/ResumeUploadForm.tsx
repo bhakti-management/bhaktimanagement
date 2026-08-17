@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense, useState, useEffect } from 'react';
+import React, { Suspense, useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Container from './Container';
 import Section from './Section';
@@ -29,7 +29,23 @@ function ResumeUploadFormContent() {
   const jobId = searchParams.get('jobId');
   const jobTitle = searchParams.get('jobTitle');
 
+  // Input states
+  const [fullName, setFullName] = useState('');
+  const [phone, setPhone] = useState('+91 ');
+  const [email, setEmail] = useState('');
+  const [locationVal, setLocationVal] = useState('');
+  const [qualification, setQualification] = useState('');
+  const [experience, setExperience] = useState('');
   const [desiredJobType, setDesiredJobType] = useState('');
+  const [bio, setBio] = useState('');
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
+
+  // Status states
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [statusMessage, setStatusMessage] = useState('');
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (jobTitle) {
@@ -48,9 +64,142 @@ function ResumeUploadFormContent() {
     }
   }, [jobTitle]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const validateFile = (file: File): boolean => {
+    const allowedExtensions = ['.pdf', '.docx'];
+    const fileExtension = file.name.slice(file.name.lastIndexOf('.')).toLowerCase();
+    
+    const isValidType = allowedExtensions.includes(fileExtension);
+    if (!isValidType) {
+      setSubmitStatus('error');
+      setStatusMessage('Only PDF and DOCX files are allowed.');
+      return false;
+    }
+
+    const maxSize = 2 * 1024 * 1024; // 2MB
+    if (file.size > maxSize) {
+      setSubmitStatus('error');
+      setStatusMessage('Resume must be smaller than 2MB.');
+      return false;
+    }
+
+    setSubmitStatus('idle');
+    setStatusMessage('');
+    return true;
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      if (validateFile(file)) {
+        setResumeFile(file);
+      } else {
+        setResumeFile(null);
+        if (fileInputRef.current) fileInputRef.current.value = '';
+      }
+    }
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
-    alert(`Thank you! Your profile has been submitted successfully for the position: ${jobTitle || 'General Application'}.`);
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      const file = e.dataTransfer.files[0];
+      if (validateFile(file)) {
+        setResumeFile(file);
+      } else {
+        setResumeFile(null);
+        if (fileInputRef.current) fileInputRef.current.value = '';
+      }
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!resumeFile) {
+      setSubmitStatus('error');
+      setStatusMessage('Please upload your resume.');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+    setStatusMessage('');
+
+    try {
+      const formData = new FormData();
+      formData.append('name', fullName);
+      formData.append('email', email);
+      formData.append('phone', phone);
+      formData.append('location', locationVal);
+      formData.append('qualification', qualification);
+      formData.append('experience', experience);
+      formData.append('desiredJobType', desiredJobType);
+      
+      if (bio) {
+        formData.append('bio', bio);
+      }
+      
+      formData.append('resume', resumeFile);
+      
+      // Send jobId only if it is a valid UUID to satisfy backend schema validation
+      const isUuid = (val: string) => {
+        const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+        return uuidRegex.test(val);
+      };
+
+      if (jobId && isUuid(jobId)) {
+        formData.append('jobId', jobId);
+      }
+
+      const response = await fetch('https://api.bhaktimanagement.com/api/candidates', {
+        method: 'POST',
+        body: formData,
+        // Browser sets Content-Type automatically with boundary, DO NOT set manually.
+      });
+
+      const data = await response.json().catch(() => null);
+
+      if (!response.ok) {
+        console.error('API submission failed. Status:', response.status);
+        console.error('Response body:', data);
+        
+        let errorMsg = 'Unable to submit your application. Please try again.';
+        if (data) {
+          if (data.errors && Array.isArray(data.errors)) {
+            errorMsg = `${data.message || 'Validation failed'}: ${data.errors.join(', ')}`;
+          } else {
+            errorMsg = data.message || data.error || errorMsg;
+          }
+        }
+        throw new Error(errorMsg);
+      }
+
+      setSubmitStatus('success');
+      setStatusMessage(`Your application was submitted successfully${jobTitle ? ` for the position: ${jobTitle}` : ''}.`);
+      
+      // Reset Form fields
+      setFullName('');
+      setPhone('+91 ');
+      setEmail('');
+      setLocationVal('');
+      setQualification('');
+      setExperience('');
+      setDesiredJobType('');
+      setBio('');
+      setResumeFile(null);
+      if (fileInputRef.current) fileInputRef.current.value = '';
+
+    } catch (err) {
+      console.error('Submit error:', err);
+      setSubmitStatus('error');
+      setStatusMessage(err instanceof Error ? err.message : 'Unable to submit your application. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -76,36 +225,90 @@ function ResumeUploadFormContent() {
           {/* Interactive Input Form Element */}
           <form onSubmit={handleSubmit} className="p-8 md:p-10 bg-white flex flex-col gap-5 text-left box-border font-sans">
             
+            {/* Status alerts */}
+            {submitStatus === 'success' && (
+              <div className="bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-[4px] p-4 text-xs font-semibold leading-relaxed">
+                ✓ {statusMessage}
+              </div>
+            )}
+
+            {submitStatus === 'error' && (
+              <div className="bg-rose-50 border border-rose-200 text-rose-800 rounded-[4px] p-4 text-xs font-semibold leading-relaxed">
+                ⚠️ {statusMessage}
+              </div>
+            )}
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
                 <label className="text-[11px] font-extrabold text-brand-navy block mb-1.5 uppercase tracking-wider">Full Name *</label>
-                <input type="text" placeholder="Enter your full name" className="w-full p-3 border border-slate-300 rounded-button text-[13px] box-border focus:outline-none focus:border-brand-navy" required />
+                <input 
+                  type="text" 
+                  placeholder="Enter your full name" 
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  className="w-full p-3 border border-slate-300 rounded-button text-[13px] box-border focus:outline-none focus:border-brand-navy" 
+                  required 
+                />
               </div>
               <div>
                 <label className="text-[11px] font-extrabold text-brand-navy block mb-1.5 uppercase tracking-wider">Phone Number *</label>
-                <input type="tel" defaultValue="+91 " className="w-full p-3 border border-slate-300 rounded-button text-[13px] box-border focus:outline-none focus:border-brand-navy" required />
+                <input 
+                  type="tel" 
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  className="w-full p-3 border border-slate-300 rounded-button text-[13px] box-border focus:outline-none focus:border-brand-navy" 
+                  required 
+                />
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
                 <label className="text-[11px] font-extrabold text-brand-navy block mb-1.5 uppercase tracking-wider">Email Address *</label>
-                <input type="email" placeholder="example@email.com" className="w-full p-3 border border-slate-300 rounded-button text-[13px] box-border focus:outline-none focus:border-brand-navy" required />
+                <input 
+                  type="email" 
+                  placeholder="example@email.com" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full p-3 border border-slate-300 rounded-button text-[13px] box-border focus:outline-none focus:border-brand-navy" 
+                  required 
+                />
               </div>
               <div>
                 <label className="text-[11px] font-extrabold text-brand-navy block mb-1.5 uppercase tracking-wider">Location (City, State) *</label>
-                <input type="text" placeholder="e.g. Mumbai, Maharashtra" className="w-full p-3 border border-slate-300 rounded-button text-[13px] box-border focus:outline-none focus:border-brand-navy" required />
+                <input 
+                  type="text" 
+                  placeholder="e.g. Mumbai, Maharashtra" 
+                  value={locationVal}
+                  onChange={(e) => setLocationVal(e.target.value)}
+                  className="w-full p-3 border border-slate-300 rounded-button text-[13px] box-border focus:outline-none focus:border-brand-navy" 
+                  required 
+                />
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
                 <label className="text-[11px] font-extrabold text-brand-navy block mb-1.5 uppercase tracking-wider">Highest Qualification *</label>
-                <input type="text" placeholder="e.g. Graduate, ITI, Class 12" className="w-full p-3 border border-slate-300 rounded-button text-[13px] box-border focus:outline-none focus:border-brand-navy" required />
+                <input 
+                  type="text" 
+                  placeholder="e.g. Graduate, ITI, Class 12" 
+                  value={qualification}
+                  onChange={(e) => setQualification(e.target.value)}
+                  className="w-full p-3 border border-slate-300 rounded-button text-[13px] box-border focus:outline-none focus:border-brand-navy" 
+                  required 
+                />
               </div>
               <div>
                 <label className="text-[11px] font-extrabold text-brand-navy block mb-1.5 uppercase tracking-wider">Total Experience (Years) *</label>
-                <input type="text" placeholder="e.g. 2" className="w-full p-3 border border-slate-300 rounded-button text-[13px] box-border focus:outline-none focus:border-brand-navy" required />
+                <input 
+                  type="text" 
+                  placeholder="e.g. 2" 
+                  value={experience}
+                  onChange={(e) => setExperience(e.target.value)}
+                  className="w-full p-3 border border-slate-300 rounded-button text-[13px] box-border focus:outline-none focus:border-brand-navy" 
+                  required 
+                />
               </div>
             </div>
 
@@ -127,23 +330,55 @@ function ResumeUploadFormContent() {
 
             <div>
               <label className="text-[11px] font-extrabold text-brand-navy block mb-1.5 uppercase tracking-wider">Brief Bio / Key Skills</label>
-              <textarea placeholder="Tell us about your strengths..." className="w-full h-24 p-3 border border-slate-300 rounded-button text-[13px] box-border resize-y focus:outline-none focus:border-brand-navy" />
+              <textarea 
+                placeholder="Tell us about your strengths..." 
+                value={bio}
+                onChange={(e) => setBio(e.target.value)}
+                className="w-full h-24 p-3 border border-slate-300 rounded-button text-[13px] box-border resize-y focus:outline-none focus:border-brand-navy" 
+              />
             </div>
 
             <div>
               <label className="text-[11px] font-extrabold text-brand-navy block mb-1.5 uppercase tracking-wider">Upload Resume (PDF/DOCX) *</label>
-              <div className="border-2 dashed border-slate-300 p-8 rounded-button bg-slate-50 text-center cursor-pointer hover:bg-slate-100/50 transition-colors">
+              
+              <input 
+                type="file" 
+                ref={fileInputRef}
+                onChange={handleFileChange}
+                accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                style={{ display: 'none' }}
+              />
+
+              <div 
+                onClick={() => fileInputRef.current?.click()}
+                onDragOver={handleDragOver}
+                onDrop={handleDrop}
+                className="border-2 dashed border-slate-300 p-8 rounded-button bg-slate-50 text-center cursor-pointer hover:bg-slate-100/50 transition-colors"
+              >
                 <div className="flex flex-col items-center gap-2">
                   <Vectors.CloudUpload />
-                  <div className="text-sm font-semibold text-brand-navy">Click to select or drag and drop your file here</div>
-                  <div className="text-[11px] text-slate-400">Supported formats: PDF, DOCX (Max 2MB)</div>
+                  {resumeFile ? (
+                    <>
+                      <div className="text-sm font-semibold text-brand-navy">Selected File: {resumeFile.name}</div>
+                      <div className="text-[11px] text-slate-500">File size: {(resumeFile.size / (1024 * 1024)).toFixed(2)} MB (Click or drop another file to replace)</div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="text-sm font-semibold text-brand-navy">Click to select or drag and drop your file here</div>
+                      <div className="text-[11px] text-slate-400">Supported formats: PDF, DOCX (Max 2MB)</div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
 
-            <button type="submit" className="bg-brand-navy text-white border-none p-4 text-[13px] md:text-sm font-bold rounded-button cursor-pointer flex items-center justify-center gap-2 mt-3 hover:brightness-110 shadow-elevated transition-all uppercase font-sans">
-              <span>Submit My Application</span>
-              <span className="text-brand-gold text-[10px]">▶</span>
+            <button 
+              type="submit" 
+              disabled={isSubmitting}
+              className={`bg-brand-navy text-white border-none p-4 text-[13px] md:text-sm font-bold rounded-button flex items-center justify-center gap-2 mt-3 hover:brightness-110 shadow-elevated transition-all uppercase font-sans ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer'}`}
+            >
+              <span>{isSubmitting ? 'Submitting...' : 'Submit My Application'}</span>
+              {!isSubmitting && <span className="text-brand-gold text-[10px]">▶</span>}
             </button>
           </form>
 
