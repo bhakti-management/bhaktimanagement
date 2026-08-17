@@ -158,13 +158,13 @@ export default function JobSeekersPage() {
             
             {/* Action Buttons Row */}
             <div className="flex gap-4 flex-wrap mb-10">
-              <Link href="/jobs" className="no-underline bg-brand-navy text-white border-none py-4 px-8 font-bold text-xs tracking-widest rounded-button text-center hover:brightness-110 shadow-elevated transition-all flex items-center gap-2 uppercase">
+              <Link href="/jobs" className="no-underline bg-brand-navy text-white border-none py-4 px-8 font-bold text-xs tracking-widest rounded-button text-center hover:brightness-110 shadow-elevated transition-all flex items-center gap-2 uppercase cursor-pointer">
                 <span>View Current Openings</span>
                 <span className="text-brand-gold text-sm">→</span>
               </Link>
-              <a href="#resume-form" className="no-underline bg-white border border-brand-navy text-brand-navy py-3.5 px-8 font-bold text-xs tracking-widest rounded-button text-center hover:bg-slate-50 transition-colors uppercase">
+              <Link href="/upload-resume" className="no-underline bg-white border border-brand-navy text-brand-navy py-3.5 px-8 font-bold text-xs tracking-widest rounded-button text-center hover:bg-slate-50 transition-colors uppercase cursor-pointer">
                 Upload Your Resume
-              </a>
+              </Link>
             </div>
 
             {/* Checkmark Attribute Matrix */}

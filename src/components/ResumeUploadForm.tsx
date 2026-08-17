@@ -158,7 +158,18 @@ function ResumeUploadFormContent() {
       const data = await response.json().catch(() => null);
 
       if (!response.ok) {
-        throw new Error(data?.message || data?.error || 'Unable to submit your application. Please try again.');
+        console.error('API submission failed. Status:', response.status);
+        console.error('Response body:', data);
+        
+        let errorMsg = 'Unable to submit your application. Please try again.';
+        if (data) {
+          if (data.errors && Array.isArray(data.errors)) {
+            errorMsg = `${data.message || 'Validation failed'}: ${data.errors.join(', ')}`;
+          } else {
+            errorMsg = data.message || data.error || errorMsg;
+          }
+        }
+        throw new Error(errorMsg);
       }
 
       setSubmitStatus('success');
