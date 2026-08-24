@@ -1,6 +1,6 @@
 import React from 'react';
 import SolutionsOverviewSection from '@/components/SolutionsOverviewSection';
-import Hero from '@/components/HeroSection';
+import HeroSection from '@/components/HeroSection';
 import AudienceSelectionSection from '@/components/AudienceSelectionSection';
 import StatsGrid from '@/components/StatsGrid';
 import ServicesSection from '@/components/ServicesSection';
@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <main className="bg-white" style={{ width: '100%', overflowX: 'hidden' }}>
       <SolutionsOverviewSection />
-      <Hero />
+      <HeroSection />
       <AudienceSelectionSection />
       <StatsGrid />
       <ServicesSection />
