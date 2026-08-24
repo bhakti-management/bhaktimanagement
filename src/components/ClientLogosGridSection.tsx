@@ -27,8 +27,12 @@ export default function ClientLogosGridSection() {
     { src: '/assets/Private logos/logo-polyrub.png', alt: 'Polyrub' },
   ];
 
+  // Duplicate arrays enough times to ensure seamless looping without blank gaps
+  const row1Clients = [...govClients, ...govClients, ...govClients, ...govClients];
+  const row2Clients = [...privateClients, ...privateClients, ...privateClients, ...privateClients, ...privateClients, ...privateClients];
+
   return (
-    <Section className="bg-slate-50 text-center py-12 lg:py-16 border-y border-slate-100 overflow-hidden">
+    <Section className="bg-white text-center py-12 lg:py-16 border-y border-slate-100 overflow-hidden">
       <Container className="flex flex-col items-center !px-0 max-w-full">
         
         {/* Section Header */}
@@ -47,22 +51,22 @@ export default function ClientLogosGridSection() {
         {/* MARQUEE CONTAINER WRAPPER */}
         <div className="w-full flex flex-col gap-5 marquee-container relative">
           
-          {/* Edge Fade Gradients */}
-          <div className="absolute left-0 top-0 bottom-0 w-16 lg:w-32 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-16 lg:w-32 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none" />
+          {/* Edge Fade Gradients - from white to transparent */}
+          <div className="absolute left-0 top-0 bottom-0 w-16 lg:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 lg:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
           {/* ROW 1: GOVERNMENT CLIENTS (Scrolls continuously to the LEFT) */}
           <div className="w-full overflow-hidden">
             <div className="flex animate-marquee-left gap-4 py-1">
-              {[...govClients, ...govClients].map((client, idx) => (
+              {row1Clients.map((client, idx) => (
                 <div 
                   key={idx} 
-                  className="bg-white border border-slate-200 p-3 rounded-[3px] shadow-sm flex items-center justify-center min-w-[160px] h-16 shrink-0 hover:border-brand-gold/60 transition-colors"
+                  className="bg-[#f8f9fa] rounded-md shadow-sm flex items-center justify-center min-w-[180px] h-20 shrink-0 hover:bg-slate-100/50 transition-colors"
                 >
                   <img 
                     src={client.src} 
                     alt={client.alt} 
-                    className="max-h-full max-w-full object-contain"
+                    className="max-h-10 max-w-[85%] object-contain block"
                   />
                 </div>
               ))}
@@ -72,15 +76,15 @@ export default function ClientLogosGridSection() {
           {/* ROW 2: PRIVATE CLIENTS (Scrolls continuously to the RIGHT) */}
           <div className="w-full overflow-hidden">
             <div className="flex animate-marquee-right gap-4 py-1">
-              {[...privateClients, ...privateClients, ...privateClients, ...privateClients].map((client, idx) => (
+              {row2Clients.map((client, idx) => (
                 <div 
                   key={idx} 
-                  className="bg-white border border-slate-200 p-3 rounded-[3px] shadow-sm flex items-center justify-center min-w-[160px] h-16 shrink-0 hover:border-brand-gold/60 transition-colors"
+                  className="bg-[#f8f9fa] rounded-md shadow-sm flex items-center justify-center min-w-[180px] h-20 shrink-0 hover:bg-slate-100/50 transition-colors"
                 >
                   <img 
                     src={client.src} 
                     alt={client.alt} 
-                    className="max-h-full max-w-full object-contain"
+                    className="max-h-10 max-w-[85%] object-contain block"
                   />
                 </div>
               ))}

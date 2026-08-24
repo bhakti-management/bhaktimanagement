@@ -4,6 +4,7 @@ import HeroSection from '@/components/HeroSection';
 import AudienceSelectionSection from '@/components/AudienceSelectionSection';
 import StatsGrid from '@/components/StatsGrid';
 import ServicesSection from '@/components/ServicesSection';
+import ClientLogosGridSection from '@/components/ClientLogosGridSection';
 import PillarsSection from '@/components/PillarsSection';
 import FounderSection from '@/components/FounderSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
@@ -19,6 +20,7 @@ export default function Home() {
       <AudienceSelectionSection />
       <StatsGrid />
       <ServicesSection />
+      <ClientLogosGridSection />
       <PillarsSection />
       <FounderSection />
       <TestimonialsSection />
