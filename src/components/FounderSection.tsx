@@ -11,11 +11,11 @@ export default function FounderSection() {
       <Container className="flex flex-col lg:flex-row gap-6 lg:gap-10 items-center lg:px-16 xl:px-24">
         
         {/* LEFT COLUMN: FOUNDER IMAGE */}
-        <div className="w-full max-w-[320px] sm:max-w-[340px] h-[390px] sm:h-[420px] relative shrink-0 flex items-center justify-center bg-slate-50 rounded-card overflow-hidden shadow-sm">
+        <div className="w-full lg:w-[42%] shrink-0 flex items-center justify-center">
           <img 
-            src="/assets/founder/bhaktidev-gupta.jpg" 
+            src="/assets/images/founder-new.jpg" 
             alt="Col. (Dr.) Bhaktidev Gupta" 
-            className="w-full h-full object-cover object-top block"
+            className="w-full max-w-[350px] h-auto object-contain rounded-card shadow-sm block"
           />
         </div>
 
