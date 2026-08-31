@@ -13,7 +13,7 @@ export default function FounderSection() {
         {/* LEFT COLUMN: FOUNDER IMAGE */}
         <div className="w-full lg:w-[42%] shrink-0 flex items-center justify-center">
           <img 
-            src="/assets/images/founder-new.jpg" 
+            src="/assets/founder-new.jpg.png.png" 
             alt="Col. (Dr.) Bhaktidev Gupta" 
             className="w-full max-w-[350px] h-auto object-contain rounded-card shadow-sm block"
           />
