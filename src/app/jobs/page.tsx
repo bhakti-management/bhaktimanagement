@@ -91,8 +91,8 @@ export default function JobsPage() {
     if (list.length === 0) return null;
 
     return (
-      <div className="mt-4">
-        <h5 className="text-[11px] font-extrabold text-brand-navy uppercase tracking-wider mb-1.5 font-sans">
+      <div className="mt-3">
+        <h5 className="text-[11px] font-extrabold text-brand-navy uppercase tracking-wider mb-1 font-sans">
           {title}
         </h5>
         <ul className="m-0 pl-0 list-none text-xs text-slate-500 space-y-1 font-sans">
@@ -128,7 +128,7 @@ export default function JobsPage() {
     <div className="w-full bg-white font-sans box-border overflow-x-hidden min-h-screen">
       
       {/* SECTION 1: HERO HEADER */}
-      <section className="bg-brand-navy text-white py-16 px-6 box-border relative overflow-hidden">
+      <section className="bg-brand-navy text-white py-10 md:py-12 px-6 box-border relative overflow-hidden">
         {/* Subtle decorative grid overlay */}
         <div 
           className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -142,15 +142,15 @@ export default function JobsPage() {
           {/* Back Nav Link */}
           <Link 
             href="/job-seekers"
-            className="no-underline text-brand-gold hover:text-white text-xs font-bold tracking-widest inline-flex items-center gap-2 mb-6 uppercase transition-colors"
+            className="no-underline text-brand-gold hover:text-white text-xs font-bold tracking-widest inline-flex items-center gap-2 mb-4 uppercase transition-colors"
           >
             <span>←</span> <span>Back to Job Seekers</span>
           </Link>
           
-          <div className="text-brand-gold text-[11px] font-extrabold tracking-widest mb-4 uppercase">
+          <div className="text-brand-gold text-[11px] font-extrabold tracking-widest mb-2.5 uppercase">
             Careers at BMSPL
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white leading-tight mb-5 font-serif m-0">
+          <h1 className="text-2xl md:text-3xl font-extrabold text-white leading-tight mb-3 font-serif m-0">
             Open Opportunities
           </h1>
           <p className="text-base text-slate-400 leading-relaxed max-w-[650px] m-0">
@@ -164,7 +164,7 @@ export default function JobsPage() {
         <Container>
           
           {/* Comprehensive Filter Control Panel */}
-          <div className="bg-white border border-slate-200 rounded-card p-6 shadow-flat mb-10 box-border">
+          <div className="bg-white border border-slate-200 rounded-card p-4 md:p-5 shadow-flat mb-8 box-border">
             <h4 className="text-[11px] font-extrabold text-brand-navy uppercase tracking-widest mb-4 mt-0">
               Filter Opportunities
             </h4>
@@ -172,23 +172,23 @@ export default function JobsPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end justify-between box-border">
               {/* Search input */}
               <div className="w-full text-left">
-                <label className="text-[10px] font-bold text-slate-400 block mb-1.5 uppercase tracking-wider">Search Title</label>
+                <label className="text-[10px] font-bold text-slate-400 block mb-1 uppercase tracking-wider">Search Title</label>
                 <input
                   type="text"
                   placeholder="e.g. Security Officer, Factory..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full p-3 border border-slate-300 rounded-button text-[13px] box-border focus:outline-none focus:border-brand-navy font-sans"
+                  className="w-full p-2.5 border border-slate-300 rounded-button text-[13px] box-border focus:outline-none focus:border-brand-navy font-sans"
                 />
               </div>
 
               {/* Department Selector */}
               <div className="w-full text-left">
-                <label className="text-[10px] font-bold text-slate-400 block mb-1.5 uppercase tracking-wider">Department</label>
+                <label className="text-[10px] font-bold text-slate-400 block mb-1 uppercase tracking-wider">Department</label>
                 <select
                   value={selectedDept}
                   onChange={(e) => setSelectedDept(e.target.value)}
-                  className="w-full p-3 border border-slate-300 bg-white rounded-button text-[13px] box-border focus:outline-none focus:border-brand-navy font-sans"
+                  className="w-full p-2.5 border border-slate-300 bg-white rounded-button text-[13px] box-border focus:outline-none focus:border-brand-navy font-sans"
                 >
                   <option value="All">All Departments</option>
                   {departments.filter(d => d !== 'All').map(dept => (
@@ -199,11 +199,11 @@ export default function JobsPage() {
 
               {/* Location Selector */}
               <div className="w-full text-left">
-                <label className="text-[10px] font-bold text-slate-400 block mb-1.5 uppercase tracking-wider">Location</label>
+                <label className="text-[10px] font-bold text-slate-400 block mb-1 uppercase tracking-wider">Location</label>
                 <select
                   value={selectedLocation}
                   onChange={(e) => setSelectedLocation(e.target.value)}
-                  className="w-full p-3 border border-slate-300 bg-white rounded-button text-[13px] box-border focus:outline-none focus:border-brand-navy font-sans"
+                  className="w-full p-2.5 border border-slate-300 bg-white rounded-button text-[13px] box-border focus:outline-none focus:border-brand-navy font-sans"
                 >
                   <option value="All">All Locations</option>
                   {locations.filter(l => l !== 'All').map(loc => (
@@ -214,11 +214,11 @@ export default function JobsPage() {
 
               {/* Job Type Selector */}
               <div className="w-full text-left">
-                <label className="text-[10px] font-bold text-slate-400 block mb-1.5 uppercase tracking-wider">Job Type</label>
+                <label className="text-[10px] font-bold text-slate-400 block mb-1 uppercase tracking-wider">Job Type</label>
                 <select
                   value={selectedType}
                   onChange={(e) => setSelectedType(e.target.value)}
-                  className="w-full p-3 border border-slate-300 bg-white rounded-button text-[13px] box-border focus:outline-none focus:border-brand-navy font-sans"
+                  className="w-full p-2.5 border border-slate-300 bg-white rounded-button text-[13px] box-border focus:outline-none focus:border-brand-navy font-sans"
                 >
                   <option value="All">All Job Types</option>
                   {jobTypes.filter(t => t !== 'All').map(type => (
@@ -233,7 +233,7 @@ export default function JobsPage() {
           {loading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[1, 2, 3, 4].map(idx => (
-                <div key={idx} className="bg-white border border-slate-200 rounded-card p-8 text-left shadow-card animate-pulse box-border">
+                <div key={idx} className="bg-white border border-slate-200 rounded-card p-6 text-left shadow-card animate-pulse box-border">
                   <div className="h-5 bg-slate-200 rounded w-2/3 mb-4"></div>
                   <div className="h-4 bg-slate-200 rounded w-1/3 mb-6"></div>
                   <div className="h-4 bg-slate-200 rounded w-full mb-2"></div>
@@ -282,7 +282,7 @@ export default function JobsPage() {
                 return (
                   <div 
                     key={job.id} 
-                    className="bg-white border border-slate-200 rounded-card p-8 text-left shadow-card hover:shadow-elevated hover:border-slate-300 transition-all flex flex-col justify-between box-border min-h-[300px]"
+                    className="bg-white border border-slate-200 rounded-card p-6 text-left shadow-card hover:shadow-elevated hover:border-slate-300 transition-all flex flex-col justify-between box-border min-h-[250px]"
                   >
                     <div>
                       {/* Top Badges */}
@@ -300,7 +300,7 @@ export default function JobsPage() {
                       </div>
                       
                       {/* Job Title & Location */}
-                      <h3 className="text-xl font-bold text-brand-navy mt-0 mb-1.5 font-sans leading-snug">
+                      <h3 className="text-lg font-bold text-brand-navy mt-0 mb-1.5 font-sans leading-snug">
                         {job.title}
                       </h3>
                       

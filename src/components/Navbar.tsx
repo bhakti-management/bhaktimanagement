@@ -34,15 +34,15 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="w-full bg-brand-navy border-b border-slate-800 sticky top-0 z-[100] shadow-card py-3 md:py-3.5 px-6 box-border">
-      <div className="w-full max-w-7xl mx-auto flex justify-between items-center box-border">
+    <nav className="w-full bg-brand-navy sticky top-0 z-[100] shadow-md py-4 px-6 box-border">
+      <div className="w-full max-w-7xl mx-auto flex justify-between items-center box-border lg:px-4 xl:px-12">
         
-        {/* Left: Branding Logo Image */}
+        {/* Left: Branding Logo */}
         <Link href="/" className="flex items-center no-underline shrink-0 z-10">
           <img 
             src="/assets/bhakticompany.logo.png.svg" 
             alt="Bhakti Management Services" 
-            className="h-10 md:h-[48px] w-auto block"
+            className="h-10 md:h-12 w-auto block"
             onError={(e) => {
               e.currentTarget.style.display = 'none';
               const fallback = document.getElementById('logo-fallback-text');
@@ -51,14 +51,15 @@ export default function Navbar() {
           />
           <span 
             id="logo-fallback-text"
-            className="hidden text-white font-bold text-lg font-sans tracking-wide"
+            className="hidden font-bold text-xl font-sans tracking-tight"
+            style={{ color: '#ffffff' }}
           >
-            BHAKTI
+            BMSPL
           </span>
         </Link>
 
-        {/* Center: Main Navigation Menu Links (Desktop) */}
-        <div className="hidden lg:flex items-center gap-6 font-sans text-[13px] font-semibold tracking-wider">
+        {/* Center: Main Navigation (Desktop) */}
+        <div className="hidden lg:flex items-center gap-7 font-sans text-[13px] font-semibold tracking-wide">
           {navItems.map((item) => (
             <div 
               key={item.name}
@@ -66,22 +67,24 @@ export default function Navbar() {
               onMouseEnter={() => item.dropdown && setActiveDropdown(item.name)}
               onMouseLeave={() => setActiveDropdown(null)}
             >
+              {/* THE FIX: Using raw React inline style to guarantee white text */}
               <Link 
                 href={item.path} 
-                className="text-white hover:text-brand-gold no-underline flex items-center gap-1 transition-colors uppercase"
+                className="hover:text-brand-gold no-underline flex items-center gap-1.5 transition-colors uppercase"
+                style={{ color: '#ffffff' }}
               >
                 <span>{item.name}</span>
-                {item.dropdown && <span className="text-[9px] opacity-70 transition-transform group-hover:rotate-180">▼</span>}
+                {item.dropdown && <span className="text-[10px] opacity-80 transition-transform group-hover:rotate-180" style={{ color: 'var(--color-brand-gold)' }}>▼</span>}
               </Link>
               
               {/* Dropdown Card */}
               {item.dropdown && activeDropdown === item.name && (
-                <div className="absolute top-full left-0 mt-0 w-56 bg-white shadow-elevated border border-slate-100 rounded-card py-2 z-[200]">
+                <div className="absolute top-full left-0 mt-0 w-64 bg-white shadow-elevated border border-slate-200 rounded-[3px] py-2 z-[200]">
                   {item.dropdown.map((subItem) => (
                     <Link 
                       key={subItem.name} 
                       href={subItem.path}
-                      className="block px-5 py-2.5 text-brand-navy text-[13px] font-semibold hover:bg-slate-50 hover:text-brand-gold no-underline transition-all"
+                      className="block px-6 py-2.5 text-slate-700 text-[13px] hover:bg-slate-50 hover:text-brand-navy no-underline transition-all"
                     >
                       {subItem.name}
                     </Link>
@@ -92,19 +95,19 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Right: Gold CTA Button (Desktop) & Hamburger Toggle (Mobile) */}
+        {/* Right: Gold CTA Button & Mobile Toggle */}
         <div className="flex items-center gap-4 shrink-0">
           <Link 
             href="/upload-resume"
-            className="hidden sm:inline-block bg-brand-gold text-brand-navy border-none py-2 px-5 font-bold text-[13px] tracking-wide rounded-button hover:brightness-110 shadow-flat z-10 transition-all no-underline"
+            className="hidden sm:inline-block bg-brand-gold text-brand-navy border-none py-2.5 px-6 font-bold text-[13px] rounded-[3px] hover:brightness-105 shadow-sm z-10 transition-all no-underline uppercase"
           >
             HIRE THROUGH BMSPL
           </Link>
 
-          {/* Mobile Menu Hamburger Button */}
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden text-white bg-transparent border-none p-1 cursor-pointer focus:outline-none z-10"
+            className="lg:hidden bg-transparent border-none p-1 cursor-pointer focus:outline-none z-10"
+            style={{ color: '#ffffff' }}
             aria-label="Toggle navigation menu"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -119,26 +122,27 @@ export default function Navbar() {
 
       </div>
 
-      {/* Mobile Drawer Navigation overlay */}
+      {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden absolute top-full left-0 w-full bg-brand-navy border-t border-slate-800 shadow-elevated py-6 px-6 box-border flex flex-col gap-4 font-sans text-[14px] font-semibold">
+        <div className="lg:hidden absolute top-full left-0 w-full bg-brand-navy border-t border-slate-800 shadow-elevated py-6 px-6 box-border flex flex-col gap-4 font-sans text-sm font-semibold">
           {navItems.map((item) => (
-            <div key={item.name} className="flex flex-col gap-2 border-b border-slate-800 pb-2">
+            <div key={item.name} className="flex flex-col gap-2 border-b border-slate-800 pb-3">
               <Link 
                 href={item.path} 
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-white hover:text-brand-gold no-underline transition-colors uppercase"
+                className="hover:text-brand-gold no-underline transition-colors uppercase"
+                style={{ color: '#ffffff' }}
               >
                 {item.name}
               </Link>
               {item.dropdown && (
-                <div className="flex flex-col gap-2 pl-4 border-l border-slate-700 mt-1">
+                <div className="flex flex-col gap-3 pl-4 border-l border-slate-700 mt-2">
                   {item.dropdown.map((subItem) => (
                     <Link 
                       key={subItem.name} 
                       href={subItem.path}
                       onClick={() => setMobileMenuOpen(false)}
-                      className="text-slate-300 hover:text-brand-gold no-underline text-[13px] font-medium transition-colors"
+                      className="text-slate-300 hover:text-white no-underline text-[13px] transition-colors"
                     >
                       {subItem.name}
                     </Link>
@@ -150,7 +154,7 @@ export default function Navbar() {
           <Link 
             href="/upload-resume"
             onClick={() => setMobileMenuOpen(false)}
-            className="w-full bg-brand-gold text-brand-navy text-center py-2.5 px-4 font-bold text-[13px] tracking-wide rounded-button hover:brightness-110 shadow-flat transition-all no-underline block mt-2"
+            className="w-full bg-brand-gold text-brand-navy text-center py-3 px-4 font-bold text-[13px] rounded-[3px] hover:brightness-105 shadow-sm transition-all no-underline block mt-4 uppercase"
           >
             HIRE THROUGH BMSPL
           </Link>

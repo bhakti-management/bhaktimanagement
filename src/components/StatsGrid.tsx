@@ -12,26 +12,27 @@ export default function StatsGrid() {
   ];
 
   return (
-    <div className="w-full bg-brand-navy py-10 px-6 box-border font-sans">
-      <Container className="flex flex-row flex-wrap justify-center items-center gap-6 md:gap-0">
+    <div className="w-full bg-brand-navy !py-5 md:!py-6 px-6 box-border font-sans border-y border-white/5">
+      {/* Added horizontal padding constraints to align with the rest of the site */}
+      <Container className="flex flex-row flex-wrap justify-between items-center gap-4 lg:px-16 xl:px-24">
         {stats.map((item, index) => (
           <React.Fragment key={index}>
             {/* Stat Item Block */}
-            <div className="flex-1 min-w-[180px] text-center flex flex-col gap-2 box-border">
-              {/* Golden Yellow Big Number */}
-              <div className="text-brand-gold text-4xl md:text-5xl font-extrabold tracking-tight leading-none">
+            <div className="flex-1 min-w-[140px] text-center flex flex-col gap-1 box-border">
+              {/* Golden Yellow Number - Scaled down to 28px/32px */}
+              <div className="text-brand-gold text-2xl lg:text-[32px] font-extrabold tracking-tight leading-none">
                 {item.number}
               </div>
               
-              {/* White Uppercase Label Text */}
-              <div className="text-white text-[11px] font-bold tracking-widest opacity-90">
+              {/* White Uppercase Label Text - Scaled down */}
+              <div className="text-white text-[9px] lg:text-[10px] font-bold tracking-widest opacity-90">
                 {item.label}
               </div>
             </div>
 
-            {/* Vertical Divider Line hidden on smaller screens */}
+            {/* Vertical Divider Line hidden on smaller screens, adjusted height */}
             {index < stats.length - 1 && (
-              <div className="hidden md:block w-px h-12 bg-white/15 shrink-0 mx-4" />
+              <div className="hidden md:block w-px h-8 bg-white/15 shrink-0 mx-2" />
             )}
           </React.Fragment>
         ))}

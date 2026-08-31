@@ -1,64 +1,86 @@
 "use client";
 
 import React from 'react';
+import Link from 'next/link';
 import Container from './Container';
 import Section from './Section';
 
 export default function FounderSection() {
   return (
-    <Section className="bg-slate-50">
-      <Container className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+    <Section className="bg-white py-6 md:py-8 box-border">
+      <Container className="flex flex-col lg:flex-row gap-6 lg:gap-10 items-center lg:px-16 xl:px-24">
         
-        {/* LEFT COLUMN: IMAGE PORTRAIT + OVERLAPPING BADGE */}
-        <div className="relative w-full">
-          {/* Main Visual Image container with border radius & shadow tokens */}
-          <div className="relative w-full aspect-[3/4] overflow-hidden rounded-card shadow-elevated">
-            <img 
-              src="/assets/founder.jpg.png" 
-              alt="Col. (Dr.) Bhaktidev Gupta" 
-              className="absolute inset-0 w-full h-full object-cover block"
-            />
-          </div>
-
-          {/* Overlapping Floating Quote Badge - placed outside overflow-hidden */}
-          <div className="absolute -right-4 bottom-8 bg-brand-gold py-4 px-6 shadow-elevated rounded-[2px] min-w-[220px] box-border">
-            <div className="text-sm font-bold text-brand-navy italic text-center">
-              "Excellence through discipline."
-            </div>
-          </div>
+        {/* LEFT COLUMN: FOUNDER IMAGE */}
+        <div className="w-full lg:w-[42%] shrink-0 flex items-center justify-center">
+          <img 
+            src="/assets/founder-new.jpg.png.png" 
+            alt="Col. (Dr.) Bhaktidev Gupta" 
+            className="w-full max-w-[350px] h-auto object-contain rounded-card shadow-sm block"
+          />
         </div>
 
-        {/* RIGHT COLUMN: TEXT CREDENTIALS */}
-        <div className="flex flex-col gap-6 w-full min-w-0">
+        {/* RIGHT COLUMN: TEXT CONTENT */}
+        <div className="flex flex-col justify-center gap-3.5 w-full min-w-0 py-1">
           
-          {/* Main Heading Text */}
-          <h2 className="text-3xl md:text-4xl font-extrabold text-brand-navy leading-tight font-serif m-0">
-            Led by Experience. Built on Honor.
+          {/* Eyebrow */}
+          <div className="text-brand-gold text-[10px] font-extrabold tracking-widest uppercase">
+            Leadership & Vision
+          </div>
+
+          {/* Main Heading */}
+          <h2 className="text-xl lg:text-2xl font-extrabold text-brand-navy m-0 font-serif tracking-tight leading-tight">
+            Leadership Built on Experience. Driven by Purpose.
           </h2>
 
-          {/* Golden Highlight Blockquote Wrapper */}
-          <div className="border-l-4 border-brand-gold pl-5 my-1.5">
-            <p className="text-base text-brand-navy italic m-0 leading-relaxed opacity-90">
-              "At BMSPL, we don't just provide manpower; we provide peace of mind. Our mission is to professionalize Indian labor with dignity and institutional precision."
+          {/* Short Introduction */}
+          <p className="text-[15px] text-slate-600 m-0 leading-relaxed">
+            Col. (Dr.) Bhaktidev Gupta, Founder & Managing Director of Bhakti Management Services, brings decades of leadership experience from the Indian Army and deep expertise in Human Resources, management and communication.
+          </p>
+
+          {/* Credentials - Compact 2-column grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5 py-2.5 border-y border-slate-100 my-0.5">
+            {[
+              "Retired Indian Army Colonel",
+              "B.Tech — IIT Kanpur",
+              "M.Sc. — Mass Communication",
+              "MBA — Human Resources",
+              "Ph.D. — Human Resources",
+              "Visiting Faculty — IIM"
+            ].map((cred, idx) => (
+              <div key={idx} className="flex items-center gap-2 text-[14px] text-slate-700 font-medium">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-gold shrink-0" />
+                <span>{cred}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Bhakti Journey / Story */}
+          <div className="text-[15px] text-slate-500 leading-relaxed flex flex-col gap-1.5">
+            <p className="m-0">
+              Founded in 1998, Bhakti began with a vision to bring greater professionalism, integrity and reliability to India's workforce ecosystem.
+            </p>
+            <p className="m-0">
+              Today, that vision has grown into a comprehensive HR and workforce solutions organization serving businesses and institutions across India.
             </p>
           </div>
 
-          {/* Main Biography Body text */}
-          <p className="text-sm md:text-base text-slate-600 leading-relaxed font-sans m-0">
-            Col. (Dr.) Bhaktidev Gupta brings over three decades of leadership from the Indian Army, combined with academic rigor from IIT and a PhD in HR Management. His vision transformed BMSPL from a local consultancy to a national workforce powerhouse.
-          </p>
-
-          {/* Signature Identity Info Stack */}
-          <div className="flex flex-col gap-1 mt-2">
-            <h4 className="text-xl font-bold text-brand-navy m-0 font-sans">
-              Col. (Dr.) Bhaktidev Gupta
-            </h4>
-            <div className="text-[11px] font-extrabold text-brand-navy tracking-widest uppercase">
-              MANAGING DIRECTOR & FOUNDER
+          {/* Designation & CTA */}
+          <div className="mt-1 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-slate-100 pt-3">
+            <div className="flex flex-col gap-0.5">
+              <h4 className="text-[14px] font-bold text-brand-navy m-0 font-sans">
+                Col. (Dr.) Bhaktidev Gupta
+              </h4>
+              <div className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">
+                Founder & Managing Director
+              </div>
             </div>
-            <div className="text-[11px] font-bold text-slate-500 mt-0.5">
-              IIT Alumnus | Army Veteran | PhD in Human Resources
-            </div>
+            <Link 
+              href="/about" 
+              className="text-xs font-bold text-brand-gold hover:text-brand-navy transition-colors uppercase tracking-widest inline-flex items-center gap-1.5 no-underline shrink-0"
+            >
+              <span>Discover Bhakti's Journey</span>
+              <span>→</span>
+            </Link>
           </div>
 
         </div>

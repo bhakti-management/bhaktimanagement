@@ -1,7 +1,10 @@
 import React from 'react';
-import Hero from '@/components/HeroSection';
+import SolutionsOverviewSection from '@/components/SolutionsOverviewSection';
+import HeroSection from '@/components/HeroSection';
+import AudienceSelectionSection from '@/components/AudienceSelectionSection';
 import StatsGrid from '@/components/StatsGrid';
 import ServicesSection from '@/components/ServicesSection';
+import ClientLogosGridSection from '@/components/ClientLogosGridSection';
 import PillarsSection from '@/components/PillarsSection';
 import FounderSection from '@/components/FounderSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
@@ -12,9 +15,12 @@ import BottomCTASection from '@/components/BottomCTASection';
 export default function Home() {
   return (
     <main className="bg-white" style={{ width: '100%', overflowX: 'hidden' }}>
-      <Hero />
+      <SolutionsOverviewSection />
+      <HeroSection />
+      <AudienceSelectionSection />
       <StatsGrid />
       <ServicesSection />
+      <ClientLogosGridSection />
       <PillarsSection />
       <FounderSection />
       <TestimonialsSection />

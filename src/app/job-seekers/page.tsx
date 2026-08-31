@@ -146,10 +146,10 @@ export default function JobSeekersPage() {
           
           <div className="text-left w-full min-w-0">
             {/* Top Yellow Tag */}
-            <div className="inline-block bg-brand-gold text-brand-navy text-[11px] font-extrabold py-1 px-2.5 rounded-[2px] tracking-widest mb-6 uppercase">
+            <div className="inline-block bg-brand-gold text-brand-navy text-[11px] font-extrabold py-1 px-2.5 rounded-[2px] tracking-widest mb-3.5 uppercase">
               25 Years of Trust
             </div>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-brand-navy leading-tight font-serif m-0 mb-5">
+            <h1 className="text-3xl md:text-[38px] lg:text-[40px] font-extrabold text-brand-navy leading-tight font-serif m-0 mb-3">
               Your Next Opportunity Is Here.
             </h1>
             <p className="text-base text-slate-600 leading-relaxed mb-9 max-w-[520px] font-sans font-normal">
@@ -157,12 +157,12 @@ export default function JobSeekersPage() {
             </p>
             
             {/* Action Buttons Row */}
-            <div className="flex gap-4 flex-wrap mb-10">
-              <Link href="/jobs" className="no-underline bg-brand-navy text-white border-none py-4 px-8 font-bold text-xs tracking-widest rounded-button text-center hover:brightness-110 shadow-elevated transition-all flex items-center gap-2 uppercase cursor-pointer">
+            <div className="flex gap-4 flex-wrap mb-6">
+              <Link href="/jobs" className="no-underline bg-brand-navy text-white border-none py-3 px-6 font-bold text-xs tracking-widest rounded-button text-center hover:brightness-110 shadow-elevated transition-all flex items-center gap-2 uppercase cursor-pointer">
                 <span>View Current Openings</span>
                 <span className="text-brand-gold text-sm">→</span>
               </Link>
-              <Link href="/upload-resume" className="no-underline bg-white border border-brand-navy text-brand-navy py-3.5 px-8 font-bold text-xs tracking-widest rounded-button text-center hover:bg-slate-50 transition-colors uppercase cursor-pointer">
+              <Link href="/upload-resume" className="no-underline bg-white border border-brand-navy text-brand-navy py-2.5 px-6 font-bold text-xs tracking-widest rounded-button text-center hover:bg-slate-50 transition-colors uppercase cursor-pointer">
                 Upload Your Resume
               </Link>
             </div>
@@ -186,7 +186,7 @@ export default function JobSeekersPage() {
 
           {/* Right Hero Portrait with Accent Anchors */}
           <div className="relative w-full flex justify-center">
-            <div className="relative max-w-[460px] w-full">
+            <div className="relative max-w-[400px] w-full">
               <img 
                 src="/assets/job-seekers-hero.jpg.png" 
                 alt="BMSPL Selected Corporate Candidate Profile" 
@@ -203,7 +203,7 @@ export default function JobSeekersPage() {
       {/* SECTION 2: WHY CANDIDATES CHOOSE BMSPL BLOCK (Why Apply Section.png) */}
       <Section className="bg-slate-50 text-center">
         <Container>
-          <h2 className="text-3xl font-extrabold text-brand-navy mb-12 tracking-tight font-serif">
+          <h2 className="text-3xl font-extrabold text-brand-navy mb-8 tracking-tight font-serif">
             Why Job Seekers Choose BMSPL
           </h2>
           
@@ -213,10 +213,10 @@ export default function JobSeekersPage() {
               return (
                 <div 
                   key={idx} 
-                  className={`p-8 text-left flex flex-col justify-between rounded-card shadow-card min-h-[235px] box-border border ${card.invert ? 'bg-brand-navy text-white border-transparent' : 'bg-white text-brand-navy border-slate-200'}`}
+                  className={`p-5 md:p-6 text-left flex flex-col justify-between rounded-card shadow-card min-h-[195px] box-border border ${card.invert ? 'bg-brand-navy text-white border-transparent' : 'bg-white text-brand-navy border-slate-200'}`}
                 >
                   <div>
-                    <div className={`w-10 h-10 rounded-[4px] flex items-center justify-center mb-6 shrink-0 ${card.invert ? 'bg-brand-gold' : 'bg-slate-100'}`}>
+                    <div className={`w-10 h-10 rounded-[4px] flex items-center justify-center mb-4 shrink-0 ${card.invert ? 'bg-brand-gold' : 'bg-slate-100'}`}>
                       <IconComponent />
                     </div>
                     <h4 className={`text-base font-bold mb-2.5 font-sans ${card.invert ? 'text-white' : 'text-brand-navy'}`}>
@@ -237,7 +237,7 @@ export default function JobSeekersPage() {
       <Section className="bg-white">
         <Container>
           
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-5 mb-12 box-border">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-5 mb-8 box-border">
             <div className="text-left w-full min-w-0">
               <h2 className="text-3xl font-extrabold text-brand-navy mb-2 font-serif">Your Path to Employment</h2>
               <p className="text-sm md:text-base text-slate-500 m-0">Simple, transparent, and efficient process.</p>
@@ -250,8 +250,8 @@ export default function JobSeekersPage() {
           {/* Connected Process Blocks */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 box-border">
             {steps.map((st, sIdx) => (
-              <div key={sIdx} className="bg-white border border-slate-100 p-10 rounded-card text-center relative shadow-card box-border">
-                <div className="w-12 h-12 rounded-full bg-brand-navy text-white text-base font-extrabold flex items-center justify-center mx-auto mb-6 border-4 border-brand-gold shadow-elevated">
+              <div key={sIdx} className="bg-white border border-slate-100 p-6 md:p-8 rounded-card text-center relative shadow-card box-border">
+                <div className="w-12 h-12 rounded-full bg-brand-navy text-white text-base font-extrabold flex items-center justify-center mx-auto mb-4 border-4 border-brand-gold shadow-elevated">
                   {st.num}
                 </div>
                 <h4 className="text-lg font-bold text-brand-navy mb-3 font-sans">{st.title}</h4>
@@ -267,7 +267,7 @@ export default function JobSeekersPage() {
       <Section className="bg-slate-100">
         <Container>
           
-          <div className="text-left mb-10 border-b border-slate-200 pb-4">
+          <div className="text-left mb-8 border-b border-slate-200 pb-3">
             <h2 className="text-2xl font-extrabold text-brand-navy m-0 font-serif">Browse by Specialization</h2>
           </div>
 
@@ -277,7 +277,7 @@ export default function JobSeekersPage() {
               return (
                 <div 
                   key={sIdx} 
-                  className={`bg-white p-6 rounded-card flex items-center gap-4 shadow-flat box-border ${isWide ? 'sm:col-span-2' : ''}`}
+                  className={`bg-white p-4 md:p-5 rounded-card flex items-center gap-4 shadow-flat box-border ${isWide ? 'sm:col-span-2' : ''}`}
                 >
                   <div className="text-2xl shrink-0">{spec.icon}</div>
                   <div className="text-left min-w-0">
@@ -290,7 +290,7 @@ export default function JobSeekersPage() {
           </div>
 
           {/* Fresh Grads Feature Stripe */}
-          <div className="w-full bg-brand-navy text-white rounded-card p-8 md:px-10 flex flex-col md:flex-row justify-between items-start md:items-center text-left gap-5 box-border border-l-4 border-brand-gold shadow-elevated">
+          <div className="w-full bg-brand-navy text-white rounded-card p-6 md:px-8 flex flex-col md:flex-row justify-between items-start md:items-center text-left gap-5 box-border border-l-4 border-brand-gold shadow-elevated">
             <div className="min-w-0">
               <div className="flex items-center gap-3 mb-2.5">
                 <Vectors.Graduation />
@@ -314,15 +314,15 @@ export default function JobSeekersPage() {
       {/* SECTION 6: FAQ ACCORDION FRAME ROWS (Frame 29.png) */}
       <Section className="bg-slate-50 border-t border-slate-200 text-center">
         <Container className="max-w-3xl">
-          <h2 className="text-3xl font-extrabold text-brand-navy mb-2.5 font-serif">Frequently Asked Questions</h2>
-          <p className="text-sm md:text-base text-slate-500 mb-10 leading-relaxed font-sans">Everything you need to know about getting placed with BMSPL.</p>
+          <h2 className="text-3xl font-extrabold text-brand-navy mb-1.5 font-serif">Frequently Asked Questions</h2>
+          <p className="text-sm md:text-base text-slate-500 mb-8 leading-relaxed font-sans">Everything you need to know about getting placed with BMSPL.</p>
           
           <div className="flex flex-col gap-3.5">
             {faqs.map((faq, index) => (
               <div key={index} className="border border-slate-200 rounded-card overflow-hidden text-left bg-white shadow-flat box-border">
                 <div 
                   onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                  className="p-5 px-6 font-bold text-[14px] md:text-[15px] text-brand-navy cursor-pointer flex justify-between items-center select-none"
+                  className="p-4 px-5 font-bold text-[14px] md:text-[15px] text-brand-navy cursor-pointer flex justify-between items-center select-none"
                 >
                   <span>{faq.q}</span>
                   <span 
@@ -333,7 +333,7 @@ export default function JobSeekersPage() {
                   </span>
                 </div>
                 {openFaq === index && (
-                  <div className="p-5 px-6 text-[13px] text-slate-600 leading-relaxed border-t border-slate-200 bg-slate-50/50">
+                  <div className="p-4 px-5 text-[13px] text-slate-600 leading-relaxed border-t border-slate-200 bg-slate-50/50">
                     {faq.a}
                   </div>
                 )}

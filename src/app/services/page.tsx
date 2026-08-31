@@ -1,229 +1,206 @@
 "use client";
 
-import React from 'react';
-import Link from 'next/link';
+import React, { useState } from 'react';
 import Container from '@/components/Container';
 import Section from '@/components/Section';
-import TestimonialsSection from '@/components/TestimonialsSection';
 
-export default function ServicesPage() {
+export default function PermanentStaffingPage() {
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
   const steps = [
-    { num: '1', title: 'UNDERSTAND', desc: 'In-depth requirement analysis and cultural fit assessment.', active: true },
-    { num: '2', title: 'SOURCE', desc: 'Multi-channel talent sourcing from our expansive 25-year databank.', active: false },
-    { num: '3', title: 'SCREEN', desc: 'Rigorous background checks and technical vetting processes.', active: false },
-    { num: '4', title: 'DEPLOY', desc: 'Seamless onboarding and deployment across your locations.', active: false },
-    { num: '5', title: 'SUPPORT', desc: 'Continuous performance monitoring and compliance audits.', active: false }
+    { num: '1', title: 'Requirement Briefing', desc: 'In-depth breakdown of corporate talent requirements and institutional culture demands.' },
+    { num: '2', title: 'Active Sourcing', desc: 'Deploying our deep 25-year databank alongside modern tech matching platforms.' },
+    { num: '3', title: 'Vetting & Screening', desc: 'Multi-layer technical tests, background history validation, and expert vetting checks.' },
+    { num: '4', title: 'Coordination', desc: 'Managing corporate interview processes smoothly to guarantee optimal selection speeds.' },
+    { num: '5', title: 'Client Onboarding', desc: 'Finalizing compliance adherence mapping and integrating talent securely.' }
   ];
 
-  const legalBadges = [
-    'PF / ESI Regularity', 'Labour Law Mastery',
-    'DGR Certification', 'Transparent Contracts',
-    'Monthly Internal Audits', 'Zero Lapse Record'
+  const advantages = [
+    { icon: '📁', title: '25-Year Database', desc: 'Instant access to qualified, pre-vetted active personnel pools.' },
+    { icon: '🎯', title: 'Precision Matching', desc: 'Advanced screening metrics maximizing cultural and functional alignment.' },
+    { icon: '🛡️', title: 'Senior-Level Focus', desc: 'Discreet executive mapping tailored for key leadership talent search.' },
+    { icon: '⚡', title: 'Turnaround Time', desc: 'Highly optimized procedures reducing empty position vacancy durations.' },
+    { icon: '🤝', title: 'Agreements & Guarantees', desc: 'Secure replacement coverage assurances backing every placement.' }
+  ];
+
+  const faqs = [
+    { q: 'How do you check the quality of candidates?', a: 'We employ a robust multi-tiered vetting methodology combining technical assessments, peer reviews, and comprehensive multi-layer background credential checks.' },
+    { q: 'What types of roles do you fulfill?', a: 'Our Career Shapers matrix spans specialized technical roles, executive management, C-suite appointments, and essential engineering functions.' },
+    { q: 'Do you assist with executive headhunting?', a: 'Yes, we provide dedicated, discreet executive headhunting services backed by industry advisory insights.' },
+    { q: 'What happens if a candidate leaves early?', a: 'Every engagement is backed by our standard compliance replacement guarantee framework to protect your operational investments.' },
+    { q: 'Do you handle international placements?', a: 'We specialize heavily in Pan-India states across critical industrial hubs, ensuring absolute statutory compliance mapping locally.' }
   ];
 
   return (
     <div className="w-full bg-white font-sans box-border overflow-x-hidden">
       
-      {/* SECTION 1: SERVICES HERO */}
-      <section 
-        className="w-full relative min-h-[65vh] md:min-h-[75vh] bg-[#051121] flex items-center py-16 px-6 box-border"
-        style={{ 
-          backgroundImage: 'linear-gradient(rgba(5,17,33,0.85), rgba(5,17,33,0.85)), url("/assets/Header - Hero Section.png")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
-        <Container className="relative z-10 text-left">
-          <div className="text-brand-gold text-[11px] font-extrabold tracking-widest mb-4 uppercase">
-            COMPLETE HR SOLUTIONS SINCE 1998
-          </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white leading-tight mb-6 max-w-[800px] font-serif m-0">
-            Every Workforce Need. One Trusted Partner.
-          </h1>
-          <p className="text-base text-slate-400 leading-relaxed mb-10 max-w-[650px] m-0">
-            From finding the right permanent hire to deploying contractual teams, securing your facilities, and developing your people — BMSPL delivers end-to-end workforce solutions across 15+ states.
-          </p>
-          <div className="flex gap-4 flex-wrap">
-            <button className="bg-brand-gold text-brand-navy border-none py-4 px-8 font-bold text-xs tracking-widest rounded-button hover:brightness-110 shadow-elevated cursor-pointer flex items-center gap-2 uppercase">
-              <span>Find the Right Service</span>
-              <span>→</span>
-            </button>
-            <button className="bg-transparent text-white border border-white/40 py-3.5 px-8 font-bold text-xs tracking-widest rounded-button hover:bg-white/5 cursor-pointer uppercase">
-              Talk to Our Team
-            </button>
-          </div>
-        </Container>
-      </section>
-
-      {/* SECTION 2: CORE SERVICES SECTION */}
-      <Section className="bg-white">
-        <Container>
-          <div className="text-left mb-16">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-brand-navy mb-4 font-serif">Our Four Core Services</h2>
-            <p className="text-sm md:text-base text-slate-500 m-0 max-w-[600px] leading-relaxed">
-              Each division operates with dedicated expertise, processes, and people — unified under BMSPL's values of quality, integrity, and consistent delivery.
+      {/* SECTION 1: HERO CONTAINER */}
+      <Section className="bg-white !py-10 lg:!py-14 border-b border-slate-100">
+        <Container className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center lg:px-16 xl:px-24">
+          <div className="text-left w-full min-w-0">
+            <div className="text-brand-gold text-[10px] font-extrabold tracking-widest mb-3 uppercase">PERMANENT RECRUITMENT SERVICES</div>
+            <h1 className="text-3xl lg:text-[40px] font-extrabold text-brand-navy leading-tight mb-4 font-serif m-0 tracking-tight">
+              Find the Right Person. First Time. Every Time.
+            </h1>
+            <p className="text-[13px] md:text-[14px] text-slate-600 leading-relaxed mb-6 m-0 font-normal">
+              Career Shapers — BMSPL's permanent staffing division — has been placing critical talent pools across sectors since 1998, ensuring strategic fit between institutional goals and professional talent.
             </p>
+            <div className="flex gap-3 flex-wrap">
+              <button className="bg-brand-navy text-white border-none py-3 px-6 font-bold text-[11px] tracking-widest rounded-[3px] hover:brightness-110 shadow-sm cursor-pointer transition-all uppercase">Submit Staffing Requirement</button>
+              <button className="bg-white border border-slate-300 text-brand-navy py-3 px-6 font-bold text-[11px] tracking-widest rounded-[3px] hover:bg-slate-50 cursor-pointer transition-all uppercase">View How It Works</button>
+            </div>
           </div>
-
-          <div className="flex flex-col gap-20">
-            
-            {/* 1. Permanent Staffing */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-              <div className="text-left w-full min-w-0">
-                <div className="text-brand-gold text-[11px] font-extrabold mb-2 tracking-wider uppercase">CAREER SHAPERS</div>
-                <h3 className="text-2xl font-bold text-brand-navy mb-4 font-serif">Permanent Staffing</h3>
-                <p className="text-sm md:text-base text-slate-500 leading-relaxed mb-6 m-0 font-sans">
-                  Leveraging a massive internal databank and rigorous screening to find long-term leadership and specialist talent. We ensure cultural fit and technical excellence for every placement.
-                </p>
-                <Link 
-                  href="/services/permanent-staffing" 
-                  className="no-underline inline-block bg-white border border-slate-300 py-2.5 px-5 text-xs font-bold text-brand-navy rounded-button hover:bg-slate-50 transition-colors uppercase tracking-wider"
-                >
-                  Explore Service →
-                </Link>
-              </div>
-              <div className="w-full aspect-[16/10] overflow-hidden rounded-card shadow-card">
-                <img src="/assets/service-permanent.jpg.png" alt="Permanent Staffing" className="w-full h-full object-cover block" />
-              </div>
+          <div className="w-full">
+            <div className="relative w-full aspect-[4/3] overflow-hidden rounded-[3px] shadow-md">
+              <img src="/assets/permanent-staffing-hero.jpg.png" alt="Strategic Executive Handshake" className="absolute inset-0 w-full h-full object-cover block" />
             </div>
-
-            {/* 2. Contractual Staffing */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-              <div className="order-2 lg:order-1 w-full aspect-[16/10] overflow-hidden rounded-card shadow-card">
-                <img src="/assets/service-contractual.jpg.png" alt="Contractual Staffing" className="w-full h-full object-cover block" />
-              </div>
-              <div className="order-1 lg:order-2 text-left w-full min-w-0">
-                <div className="text-brand-gold text-[11px] font-extrabold mb-2 tracking-wider uppercase">KVMS DIVISION</div>
-                <h3 className="text-2xl font-bold text-brand-navy mb-4 font-serif">Contractual Staffing</h3>
-                <p className="text-sm md:text-base text-slate-500 leading-relaxed mb-6 m-0 font-sans">
-                  High-scale deployment and end-to-end payrolling with absolute statutory compliance and legal indemnity. We manage the complexity so you can focus on growth.
-                </p>
-                <Link 
-                  href="/services/contractual-staffing" 
-                  className="no-underline inline-block bg-white border border-slate-300 py-2.5 px-5 text-xs font-bold text-brand-navy rounded-button hover:bg-slate-50 transition-colors uppercase tracking-wider"
-                >
-                  Explore Service →
-                </Link>
-              </div>
-            </div>
-
-            {/* 3. Security Services */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-              <div className="text-left w-full min-w-0">
-                <div className="text-brand-gold text-[11px] font-extrabold mb-2 tracking-wider uppercase">BDSS DIVISION</div>
-                <h3 className="text-2xl font-bold text-brand-navy mb-4 font-serif">Security Services</h3>
-                <p className="text-sm md:text-base text-slate-500 leading-relaxed mb-6 m-0 font-sans">
-                  DGR-registered agency providing disciplined, ex-army personnel for industrial and facility protection. Our security solutions are built on military-grade precision and trust.
-                </p>
-                <Link 
-                  href="/services/security-services" 
-                  className="no-underline inline-block bg-white border border-slate-300 py-2.5 px-5 text-xs font-bold text-brand-navy rounded-button hover:bg-slate-50 transition-colors uppercase tracking-wider"
-                >
-                  Explore Service →
-                </Link>
-              </div>
-              <div className="w-full aspect-[16/10] overflow-hidden rounded-card shadow-card">
-                <img src="/assets/service-security.jpg.jpg" alt="Security Services" className="w-full h-full object-cover block" />
-              </div>
-            </div>
-
-            {/* 4. Training & Dev */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-              <div className="order-2 lg:order-1 w-full aspect-[16/10] overflow-hidden rounded-card shadow-card">
-                <img src="/assets/service-training.jpg.png" alt="Training and Development" className="w-full h-full object-cover block" />
-              </div>
-              <div className="order-1 lg:order-2 text-left w-full min-w-0">
-                <div className="text-brand-gold text-[11px] font-extrabold mb-2 tracking-wider uppercase">BMSPL ACADEMY</div>
-                <h3 className="text-2xl font-bold text-brand-navy mb-4 font-serif">Training & Dev</h3>
-                <p className="text-sm md:text-base text-slate-500 leading-relaxed mb-6 m-0 font-sans">
-                  Leadership development and practitioner-led workshops focused on army-grade discipline and modern management. We empower your workforce with the skills of tomorrow.
-                </p>
-                <Link 
-                  href="/services/training-development" 
-                  className="no-underline inline-block bg-white border border-slate-300 py-2.5 px-5 text-xs font-bold text-brand-navy rounded-button hover:bg-slate-50 transition-colors uppercase tracking-wider"
-                >
-                  Explore Service →
-                </Link>
-              </div>
-            </div>
-
           </div>
         </Container>
       </Section>
 
-      {/* SECTION 3: PROCESS PIPELINE TIMELINE */}
-      <Section className="bg-slate-50 text-center">
-        <Container>
-          <h2 className="text-3xl font-extrabold text-brand-navy mb-4 font-serif">How BMSPL Works</h2>
-          <p className="text-sm md:text-base text-slate-500 max-w-[650px] mx-auto mb-16 leading-relaxed">
-            A system-driven, process-oriented approach that has delivered consistent results for 25+ years.
-          </p>
+      {/* SECTION 2: DEFINITION SPLIT BLOCK */}
+      <Section className="bg-slate-50 !py-10 lg:!py-14 border-b border-slate-100">
+        <Container className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10 items-start lg:px-16 xl:px-24">
+          <div className="lg:col-span-2 text-left w-full min-w-0">
+            <h2 className="text-2xl lg:text-[32px] font-extrabold text-brand-navy mb-4 font-serif tracking-tight">What Permanent Staffing Actually Means</h2>
+            <p className="text-[13px] text-slate-600 leading-relaxed mb-4 m-0 font-sans">
+              Permanent staffing is more than filling an open position — it is an investment in long-term operational scaling. A permanent workforce drives standard continuity, institutional culture alignment, and structural leadership growth from within.
+            </p>
+            <div className="border-l-[3px] border-brand-gold pl-4 text-brand-gold text-[13px] md:text-[14px] font-bold italic">
+              "We focus on the components that map to longevity: skill proficiency, structural alignment, and character pairing."
+            </div>
+          </div>
+          <div className="bg-brand-navy text-white p-6 rounded-[3px] text-left shadow-sm w-full box-border">
+            <h3 className="text-[15px] font-bold text-brand-gold mb-3 font-sans">Integrated Methodology</h3>
+            <p className="text-[12px] text-slate-300 leading-relaxed mb-4 m-0">
+              We merge traditional rigorous screening models with contemporary data analytics tools to produce shortlist matches that lower long-term turnover risk.
+            </p>
+            <div className="flex flex-col gap-2 text-[12px] font-semibold">
+              <div>🔹 Cultural Alignment Verification</div>
+              <div>🔹 Full Technical Competency Assurances</div>
+              <div>🔹 Statutory & Reference Credential Mapping</div>
+            </div>
+          </div>
+        </Container>
+      </Section>
 
-          <div className="flex justify-between items-start flex-wrap gap-8">
+      {/* SECTION 3: RECRUITMENT JOURNEY TIMELINE */}
+      <Section className="bg-white text-center !py-10 lg:!py-14">
+        {/* Added horizontal padding constraints */}
+        <Container className="lg:px-16 xl:px-24">
+          <div className="text-brand-gold text-[10px] font-extrabold tracking-widest mb-2 uppercase">ONLINE SYSTEM</div>
+          {/* Scaled down heading */}
+          <h2 className="text-2xl lg:text-[32px] font-extrabold text-brand-navy mb-8 font-serif tracking-tight">Our Recruitment Journey</h2>
+          
+          {/* THE FIX: Replaced floating flex items with structured, bordered cards in a tight grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 box-border w-full items-stretch">
             {steps.map((st) => (
-              <div key={st.num} className="flex-1 min-w-[180px] flex flex-col items-center">
-                <div 
-                  className={`w-16 h-16 rounded-full flex items-center justify-center text-xl font-extrabold mb-5 transition-all duration-200 border-2 ${st.active ? 'bg-brand-gold border-transparent text-brand-navy shadow-elevated' : 'bg-white border-slate-200 text-brand-navy'}`}
-                >
-                  {st.num}
-                </div>
-                <h4 className="text-[13px] font-extrabold text-brand-navy mb-2.5 tracking-wider uppercase font-sans">{st.title}</h4>
-                <p className="text-xs text-slate-500 leading-relaxed m-0 max-w-[160px] font-sans">{st.desc}</p>
+              <div key={st.num} className="bg-white border border-slate-200 p-5 rounded-[3px] shadow-sm hover:shadow-md hover:border-brand-gold/40 transition-all flex flex-col items-center box-border h-full">
+                <div className="bg-brand-navy text-white w-7 h-7 flex items-center justify-center text-[12px] font-bold mb-3 rounded-[2px] shadow-sm">{st.num}</div>
+                <h4 className="text-[13px] font-bold text-brand-navy mb-2 font-sans">{st.title}</h4>
+                <p className="text-[11px] text-slate-500 leading-relaxed m-0 font-sans">{st.desc}</p>
               </div>
             ))}
           </div>
         </Container>
       </Section>
 
-      {/* SECTION 4: COMPLIANCE GAVEL STATEMENT */}
-      <Section className="bg-white">
-        <Container className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="text-left w-full min-w-0">
-            <h2 className="text-3xl font-extrabold text-brand-navy mb-4 font-serif">
-              Full Compliance. <span className="text-brand-gold">Zero Risk to You.</span>
-            </h2>
-            <p className="text-sm md:text-base text-slate-500 leading-relaxed mb-8 m-0">
-              One of the most common risks in workforce outsourcing is statutory non-compliance. BMSPL eliminates that risk entirely by maintaining institutional standards that exceed legal requirements.
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 box-border">
-              {legalBadges.map((badge, idx) => (
-                <div key={idx} className="border-l-4 border-brand-gold bg-slate-50 p-4 text-[13px] font-bold text-brand-navy flex items-center gap-2 rounded-r-[2px]">
-                  <span className="text-brand-gold">✓</span>
-                  <span>{badge}</span>
-                </div>
-              ))}
+      {/* SECTION 4: ROLES WE FILL MATRIX */}
+      <Section className="bg-slate-50 !py-10 lg:!py-14 border-t border-slate-200">
+        <Container className="lg:px-16 xl:px-24">
+          <h2 className="text-2xl lg:text-[32px] font-extrabold text-brand-navy mb-2 text-left font-serif tracking-tight">Roles We Fill</h2>
+          <p className="text-[13px] text-slate-500 mb-8 text-left font-sans">We offer comprehensive recruitment across diverse functional streams and corporate verticals.</p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 text-left box-border">
+            <div className="bg-amber-50/50 border border-amber-100 p-6 rounded-[3px] shadow-sm box-border">
+              <h4 className="text-[15px] font-bold text-brand-navy mb-2.5 font-sans">Generalized Overview</h4>
+              <p className="text-[12px] text-slate-600 leading-relaxed m-0 font-sans">From mid-management leaders to crucial factory floor engineering technical leads, we supply vetted personnel arrays matching specialized industrial parameters.</p>
             </div>
-          </div>
-
-          <div className="relative w-full flex justify-center">
-            <div className="relative max-w-[520px] w-full">
-              <div className="relative w-full aspect-[4/3] overflow-hidden rounded-card shadow-elevated">
-                <img src="/assets/compliance-stamp.jpg.png" alt="Statutory Compliance Stamp" className="absolute inset-0 w-full h-full object-cover block" />
+            <div className="bg-white border border-slate-200 p-6 rounded-[3px] shadow-sm box-border">
+              <h4 className="text-[10px] font-extrabold text-brand-gold mb-3 tracking-widest uppercase">OFFICE ROLE</h4>
+              <div className="flex flex-col gap-2 text-[12px] text-slate-600 font-semibold font-sans">
+                <div>▪ Executive Leadership & C-Suite</div>
+                <div>▪ Finance, Accounts & Taxes</div>
+                <div>▪ Middle Management Leads</div>
+                <div>▪ Personnel Administration</div>
+                <div>▪ Human Resource Specialists</div>
               </div>
-              <div className="absolute -left-5 -bottom-5 bg-brand-navy text-white p-6 shadow-elevated rounded-card flex items-center gap-4">
-                <div className="text-3xl font-extrabold text-brand-gold leading-none">25+</div>
-                <div className="text-[11px] font-extrabold tracking-wider text-slate-400 uppercase">YEARS OF COMPLIANCE</div>
+            </div>
+            <div className="bg-white border border-slate-200 p-6 rounded-[3px] shadow-sm box-border">
+              <h4 className="text-[10px] font-extrabold text-brand-gold mb-3 tracking-widest uppercase">TECHNICAL ROLE</h4>
+              <div className="flex flex-col gap-2 text-[12px] text-slate-600 font-semibold font-sans">
+                <div>▪ Marine Engineering Experts</div>
+                <div>▪ Chemical Factory Vetting</div>
+                <div>▪ Manufacturing Plant Leads</div>
+                <div>▪ QA/QC Technicians</div>
+                <div>▪ Project Engineering Managers</div>
               </div>
             </div>
           </div>
         </Container>
       </Section>
 
-      {/* SECTION 5: CLIENT REVIEWS */}
-      <TestimonialsSection />
+      {/* SECTION 5: ADVANTAGES GRID PANELS */}
+      <Section className="bg-white text-center !py-10 lg:!py-14">
+        <Container className="lg:px-16 xl:px-24">
+          <h2 className="text-2xl lg:text-[32px] font-extrabold text-brand-navy mb-3 font-serif tracking-tight">The BMSPL Advantage</h2>
+          <p className="text-[13px] text-slate-500 mb-10 font-sans">Why leading corporate environments delegate crucial selection briefs to our teams.</p>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 box-border">
+            {advantages.map((adv, idx) => (
+              <div key={idx} className={`bg-white border p-5 rounded-[3px] text-left flex flex-col gap-2 shadow-sm hover:shadow-md transition-all box-border ${idx === 2 ? 'border-t-[3px] border-brand-gold' : 'border-slate-200'}`}>
+                <div className="text-xl mb-1">{adv.icon}</div>
+                <h4 className="text-[13px] font-bold text-brand-navy m-0 font-sans">{adv.title}</h4>
+                <p className="text-[11px] text-slate-500 leading-relaxed m-0 font-sans">{adv.desc}</p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </Section>
 
-      {/* SECTION 6: BOTTOM CLOSING BANNER */}
-      <Section className="bg-white border-t border-slate-100 text-center">
-        <Container className="max-w-2xl flex flex-col items-center gap-6">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-brand-navy leading-tight font-serif m-0">
-            Not Sure Which Service Fits Your Need?
-          </h2>
-          <p className="text-sm md:text-base text-slate-500 leading-relaxed max-w-[560px] m-0">
-            Our team has been matching organizations with the right workforce solution for 25+ years. Tell us your requirement — we'll tell you the fastest path.
+      {/* SECTION 6: HEAVY QUOTE PANEL TESTIMONIAL BLOCK */}
+      <Section className="bg-brand-navy text-white !py-12 lg:!py-16">
+        <Container className="max-w-4xl border-l-[3px] border-brand-gold pl-6 md:pl-10 relative lg:px-16 xl:px-24">
+          <span className="absolute left-2 -top-5 text-[60px] text-white/10 font-serif leading-none select-none">“</span>
+          <p className="text-[15px] md:text-[16px] leading-relaxed italic mb-5 text-slate-300 m-0 font-sans relative z-10">
+            "BMSPL's Career Shapers division has been instrumental in our executive expansion. Their ability to understand the specific nuances of our industrial sector and deliver high-caliber candidates consistently is what sets them apart."
           </p>
-          <button className="bg-brand-gold text-brand-navy border-none py-4 px-9 font-bold text-xs tracking-widest rounded-button hover:brightness-110 shadow-elevated cursor-pointer transition-all uppercase">
-            Talk to Our Team
-          </button>
+          <div className="text-[14px] font-bold text-brand-gold font-sans relative z-10">Mr. Akash Patel</div>
+          <div className="text-[11px] text-slate-400 font-sans relative z-10">Technical Operations Director</div>
+        </Container>
+      </Section>
+
+      {/* SECTION 7: FAQ ACCORDION CONTAINER */}
+      <Section className="bg-white text-center !py-10 lg:!py-14">
+        <Container className="max-w-3xl lg:px-16 xl:px-24">
+          <h2 className="text-2xl lg:text-[32px] font-extrabold text-brand-navy mb-8 font-serif tracking-tight">Frequently Asked Questions</h2>
+          <div className="flex flex-col gap-3">
+            {faqs.map((faq, index) => (
+              <div key={index} className="border border-slate-200 rounded-[3px] overflow-hidden text-left shadow-sm">
+                <div 
+                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                  className="bg-slate-50/50 p-4 px-5 font-bold text-[13px] md:text-[14px] text-brand-navy cursor-pointer flex justify-between items-center select-none"
+                >
+                  <span>{faq.q}</span>
+                  <span className="text-brand-gold text-[10px]">{openFaq === index ? '▼' : '▶'}</span>
+                </div>
+                {openFaq === index && (
+                  <div className="p-4 px-5 text-[12px] text-slate-500 leading-relaxed border-t border-slate-200 bg-white">
+                    {faq.a}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* SECTION 8: FINAL CTA BANNER */}
+      <Section className="bg-[#091a30] text-center !py-10 lg:!py-14">
+        <Container className="max-w-2xl flex flex-col items-center gap-4 lg:px-16 xl:px-24">
+          <h2 className="text-2xl lg:text-[32px] font-extrabold text-white leading-tight font-serif m-0 tracking-tight">Ready to Find Your Next Great Hire?</h2>
+          <p className="text-[13px] text-slate-400 leading-relaxed m-0">Discuss your conversion briefs with our selection team. Discover 25 years of corporate mapping legacy at your disposal.</p>
+          <button className="bg-brand-gold text-brand-navy border-none py-3 px-7 font-bold text-[11px] tracking-widest rounded-[3px] hover:brightness-110 shadow-sm cursor-pointer transition-all uppercase mt-2">Submit Staffing Brief Requirement</button>
         </Container>
       </Section>
 
