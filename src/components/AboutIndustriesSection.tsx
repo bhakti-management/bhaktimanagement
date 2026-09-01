@@ -6,12 +6,12 @@ import Section from './Section';
 
 export default function AboutIndustriesSection() {
   const logos = [
-    '/assets/logo-nirmiti.png.svg',
-    '/assets/logo-polyrub.png.svg',
-    '/assets/logo-caparo.png.svg',
-    '/assets/logo-nessa.png.svg',
-    '/assets/logo-gil.png.svg',
-    '/assets/logo-jbm.png.svg'
+    '/assets/all-clients/logo-nirmiti.png.svg',
+    '/assets/all-clients/logo-polyrub.png.svg',
+    '/assets/all-clients/logo-caparo.png.svg',
+    '/assets/all-clients/logo-nessa.png.svg',
+    '/assets/all-clients/logo-gil.png.svg',
+    '/assets/all-clients/logo-jbm.png.svg'
   ];
 
   const industries = [

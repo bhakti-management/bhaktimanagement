@@ -123,7 +123,7 @@ export default function Navbar() {
             flexShrink: 0,
           }}>
             <Image
-              src="/assets/bhakticompany.logo.png"
+              src="/assets/bhakticompany.logo.png.svg"
               alt="Bhakti Management Services"
               width={120}
               height={52}
