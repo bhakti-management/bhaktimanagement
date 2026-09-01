@@ -42,9 +42,13 @@
 }
 
 .animate-marquee-left {
-  animation: marquee-left 35s linear infinite;
+  animation-name: marquee-left;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
 .animate-marquee-right {
-  animation: marquee-right 40s linear infinite;
+  animation-name: marquee-right;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }

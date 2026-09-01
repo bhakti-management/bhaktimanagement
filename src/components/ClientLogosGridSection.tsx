@@ -175,13 +175,6 @@ export default function ClientLogosGridSection() {
     );
   };
 
-  // =========================================================
-  // MARQUEE STYLE
-  // =========================================================
-  const marqueeStyle = {
-    animationPlayState: isPaused ? "paused" : "running",
-  } as React.CSSProperties;
-
   return (
     <Section
       className="
@@ -272,16 +265,13 @@ export default function ClientLogosGridSection() {
           ==================================================== */}
           <div className="w-full overflow-hidden">
             <div
-              className="
-                animate-marquee-right
-                flex
-                gap-4
-                py-2
-                w-max
-              "
+              className="flex gap-4 py-2 w-max"
               style={{
-                ...marqueeStyle,
+                animationName: "marquee-right",
                 animationDuration: "35s",
+                animationTimingFunction: "linear",
+                animationIterationCount: "infinite",
+                animationPlayState: isPaused ? "paused" : "running",
               }}
             >
               {[
@@ -305,16 +295,13 @@ export default function ClientLogosGridSection() {
           ==================================================== */}
           <div className="w-full overflow-hidden">
             <div
-              className="
-                animate-marquee-left
-                flex
-                gap-4
-                py-2
-                w-max
-              "
+              className="flex gap-4 py-2 w-max"
               style={{
-                ...marqueeStyle,
+                animationName: "marquee-left",
                 animationDuration: "40s",
+                animationTimingFunction: "linear",
+                animationIterationCount: "infinite",
+                animationPlayState: isPaused ? "paused" : "running",
               }}
             >
               {[
