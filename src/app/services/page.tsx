@@ -26,7 +26,7 @@ export default function ServicesPage() {
       
       {/* SECTION 1: SERVICES HERO */}
       <section 
-        className="w-full relative min-h-[65vh] md:min-h-[75vh] bg-[#051121] flex items-center py-16 px-6 box-border"
+        className="w-full relative min-h-[48vh] md:min-h-[52vh] bg-[#051121] flex items-center py-10 md:py-12 px-6 box-border"
         style={{ 
           backgroundImage: 'linear-gradient(rgba(5,17,33,0.85), rgba(5,17,33,0.85)), url("/assets/Header - Hero Section.png")',
           backgroundSize: 'cover',
@@ -34,21 +34,21 @@ export default function ServicesPage() {
         }}
       >
         <Container className="relative z-10 text-left">
-          <div className="text-brand-gold text-[11px] font-extrabold tracking-widest mb-4 uppercase">
+          <div className="text-brand-gold text-[11px] font-extrabold tracking-widest mb-3 uppercase">
             COMPLETE HR SOLUTIONS SINCE 1998
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white leading-tight mb-6 max-w-[800px] font-serif m-0">
+          <h1 className="text-2xl md:text-3xl font-extrabold text-white leading-tight mb-5 max-w-[800px] font-serif m-0">
             Every Workforce Need. One Trusted Partner.
           </h1>
-          <p className="text-base text-slate-400 leading-relaxed mb-10 max-w-[650px] m-0">
+          <p className="text-base text-slate-400 leading-relaxed mb-8 max-w-[650px] m-0">
             From finding the right permanent hire to deploying contractual teams, securing your facilities, and developing your people — BMSPL delivers end-to-end workforce solutions across 15+ states.
           </p>
           <div className="flex gap-4 flex-wrap">
-            <button className="bg-brand-gold text-brand-navy border-none py-4 px-8 font-bold text-xs tracking-widest rounded-button hover:brightness-110 shadow-elevated cursor-pointer flex items-center gap-2 uppercase">
+            <button className="bg-brand-gold text-brand-navy border-none py-3 px-6 font-bold text-xs tracking-widest rounded-button hover:brightness-110 shadow-elevated cursor-pointer flex items-center gap-2 uppercase">
               <span>Find the Right Service</span>
               <span>→</span>
             </button>
-            <button className="bg-transparent text-white border border-white/40 py-3.5 px-8 font-bold text-xs tracking-widest rounded-button hover:bg-white/5 cursor-pointer uppercase">
+            <button className="bg-transparent text-white border border-white/40 py-2.5 px-6 font-bold text-xs tracking-widest rounded-button hover:bg-white/5 cursor-pointer uppercase">
               Talk to Our Team
             </button>
           </div>
@@ -58,14 +58,14 @@ export default function ServicesPage() {
       {/* SECTION 2: CORE SERVICES SECTION */}
       <Section className="bg-white">
         <Container>
-          <div className="text-left mb-16">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-brand-navy mb-4 font-serif">Our Four Core Services</h2>
+          <div className="text-left mb-10">
+            <h2 className="text-2xl md:text-3xl font-extrabold text-brand-navy mb-4 font-serif">Our Four Core Services</h2>
             <p className="text-sm md:text-base text-slate-500 m-0 max-w-[600px] leading-relaxed">
               Each division operates with dedicated expertise, processes, and people — unified under BMSPL's values of quality, integrity, and consistent delivery.
             </p>
           </div>
 
-          <div className="flex flex-col gap-20">
+          <div className="flex flex-col gap-12">
             
             {/* 1. Permanent Staffing */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
@@ -82,14 +82,14 @@ export default function ServicesPage() {
                   Explore Service →
                 </Link>
               </div>
-              <div className="w-full aspect-[16/10] overflow-hidden rounded-card shadow-card">
+              <div className="w-full max-w-[450px] lg:ml-auto aspect-[16/10] overflow-hidden rounded-card shadow-card">
                 <img src="/assets/service-permanent.jpg.png" alt="Permanent Staffing" className="w-full h-full object-cover block" />
               </div>
             </div>
 
             {/* 2. Contractual Staffing */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-              <div className="order-2 lg:order-1 w-full aspect-[16/10] overflow-hidden rounded-card shadow-card">
+              <div className="order-2 lg:order-1 w-full max-w-[450px] aspect-[16/10] overflow-hidden rounded-card shadow-card">
                 <img src="/assets/service-contractual.jpg.png" alt="Contractual Staffing" className="w-full h-full object-cover block" />
               </div>
               <div className="order-1 lg:order-2 text-left w-full min-w-0">
@@ -122,14 +122,14 @@ export default function ServicesPage() {
                   Explore Service →
                 </Link>
               </div>
-              <div className="w-full aspect-[16/10] overflow-hidden rounded-card shadow-card">
+              <div className="w-full max-w-[450px] lg:ml-auto aspect-[16/10] overflow-hidden rounded-card shadow-card">
                 <img src="/assets/service-security.jpg.jpg" alt="Security Services" className="w-full h-full object-cover block" />
               </div>
             </div>
 
             {/* 4. Training & Dev */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-              <div className="order-2 lg:order-1 w-full aspect-[16/10] overflow-hidden rounded-card shadow-card">
+              <div className="order-2 lg:order-1 w-full max-w-[450px] aspect-[16/10] overflow-hidden rounded-card shadow-card">
                 <img src="/assets/service-training.jpg.png" alt="Training and Development" className="w-full h-full object-cover block" />
               </div>
               <div className="order-1 lg:order-2 text-left w-full min-w-0">
@@ -154,8 +154,8 @@ export default function ServicesPage() {
       {/* SECTION 3: PROCESS PIPELINE TIMELINE */}
       <Section className="bg-slate-50 text-center">
         <Container>
-          <h2 className="text-3xl font-extrabold text-brand-navy mb-4 font-serif">How BMSPL Works</h2>
-          <p className="text-sm md:text-base text-slate-500 max-w-[650px] mx-auto mb-16 leading-relaxed">
+          <h2 className="text-2xl md:text-3xl font-extrabold text-brand-navy mb-4 font-serif">How BMSPL Works</h2>
+          <p className="text-sm md:text-base text-slate-500 max-w-[650px] mx-auto mb-10 leading-relaxed">
             A system-driven, process-oriented approach that has delivered consistent results for 25+ years.
           </p>
 
@@ -163,7 +163,7 @@ export default function ServicesPage() {
             {steps.map((st) => (
               <div key={st.num} className="flex-1 min-w-[180px] flex flex-col items-center">
                 <div 
-                  className={`w-16 h-16 rounded-full flex items-center justify-center text-xl font-extrabold mb-5 transition-all duration-200 border-2 ${st.active ? 'bg-brand-gold border-transparent text-brand-navy shadow-elevated' : 'bg-white border-slate-200 text-brand-navy'}`}
+                  className={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-extrabold mb-4 transition-all duration-200 border-2 ${st.active ? 'bg-brand-gold border-transparent text-brand-navy shadow-elevated' : 'bg-white border-slate-200 text-brand-navy'}`}
                 >
                   {st.num}
                 </div>
@@ -177,9 +177,9 @@ export default function ServicesPage() {
 
       {/* SECTION 4: COMPLIANCE GAVEL STATEMENT */}
       <Section className="bg-white">
-        <Container className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <Container className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div className="text-left w-full min-w-0">
-            <h2 className="text-3xl font-extrabold text-brand-navy mb-4 font-serif">
+            <h2 className="text-2xl md:text-3xl font-extrabold text-brand-navy mb-4 font-serif">
               Full Compliance. <span className="text-brand-gold">Zero Risk to You.</span>
             </h2>
             <p className="text-sm md:text-base text-slate-500 leading-relaxed mb-8 m-0">
@@ -196,12 +196,12 @@ export default function ServicesPage() {
           </div>
 
           <div className="relative w-full flex justify-center">
-            <div className="relative max-w-[520px] w-full">
+            <div className="relative max-w-[450px] w-full lg:ml-auto">
               <div className="relative w-full aspect-[4/3] overflow-hidden rounded-card shadow-elevated">
                 <img src="/assets/compliance-stamp.jpg.png" alt="Statutory Compliance Stamp" className="absolute inset-0 w-full h-full object-cover block" />
               </div>
-              <div className="absolute -left-5 -bottom-5 bg-brand-navy text-white p-6 shadow-elevated rounded-card flex items-center gap-4">
-                <div className="text-3xl font-extrabold text-brand-gold leading-none">25+</div>
+              <div className="absolute -left-3 -bottom-3 bg-brand-navy text-white p-4 md:p-5 shadow-elevated rounded-card flex items-center gap-4">
+                <div className="text-2xl md:text-3xl font-extrabold text-brand-gold leading-none">25+</div>
                 <div className="text-[11px] font-extrabold tracking-wider text-slate-400 uppercase">YEARS OF COMPLIANCE</div>
               </div>
             </div>
@@ -215,13 +215,13 @@ export default function ServicesPage() {
       {/* SECTION 6: BOTTOM CLOSING BANNER */}
       <Section className="bg-white border-t border-slate-100 text-center">
         <Container className="max-w-2xl flex flex-col items-center gap-6">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-brand-navy leading-tight font-serif m-0">
+          <h2 className="text-2xl md:text-3xl font-extrabold text-brand-navy leading-tight font-serif m-0">
             Not Sure Which Service Fits Your Need?
           </h2>
           <p className="text-sm md:text-base text-slate-500 leading-relaxed max-w-[560px] m-0">
             Our team has been matching organizations with the right workforce solution for 25+ years. Tell us your requirement — we'll tell you the fastest path.
           </p>
-          <button className="bg-brand-gold text-brand-navy border-none py-4 px-9 font-bold text-xs tracking-widest rounded-button hover:brightness-110 shadow-elevated cursor-pointer transition-all uppercase">
+          <button className="bg-brand-gold text-brand-navy border-none py-3 px-7 font-bold text-xs tracking-widest rounded-button hover:brightness-110 shadow-elevated cursor-pointer transition-all uppercase">
             Talk to Our Team
           </button>
         </Container>

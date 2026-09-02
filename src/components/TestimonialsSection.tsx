@@ -13,35 +13,44 @@ export default function TestimonialsSection() {
   ];
 
   return (
-    <Section className="bg-slate-200 text-center">
-      <Container>
-        <h2 className="text-3xl md:text-4xl font-extrabold text-brand-navy mb-12 font-serif">
+    <Section className="bg-slate-50 !py-10 lg:!py-14 text-center border-t border-slate-100">
+      {/* Added horizontal padding to squish the grid inwards, matching the Hero & Pillars */}
+      <Container className="lg:px-16 xl:px-24">
+        
+        <h2 className="text-2xl lg:text-[32px] font-extrabold text-brand-navy mb-8 font-serif tracking-tight leading-tight">
           Trusted by Industry Leaders
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 box-border">
+        
+        {/* Compressed the gap between cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 box-border">
           {reviews.map((item, index) => (
             <div 
               key={index} 
-              className="bg-white border-t-4 border-brand-gold p-8 md:p-10 text-left relative shadow-card rounded-card box-border"
+              className="bg-white border-t-4 border-brand-gold p-5 md:p-6 text-left relative shadow-sm hover:shadow-md transition-shadow rounded-[3px] box-border flex flex-col justify-between"
             >
-              {/* Soft decorative quotes watermark */}
-              <span className="absolute right-8 top-5 text-[60px] text-slate-100 font-bold font-serif leading-none select-none">
+              {/* Soft decorative quotes watermark pushed to the background */}
+              <span className="absolute right-4 top-2 text-[60px] text-slate-100 font-serif leading-none select-none pointer-events-none">
                 ”
               </span>
               
-              <p className="text-sm md:text-base text-slate-600 italic leading-relaxed mb-6 max-w-[90%] font-sans">
+              {/* Added relative and z-10 so text stays above the watermark, tightened font sizes */}
+              <p className="text-[13px] text-slate-600 italic leading-relaxed mb-5 pr-6 font-sans relative z-10">
                 {item.text}
               </p>
               
-              <div className="text-[11px] font-extrabold text-brand-gold tracking-widest mb-1 font-sans">
-                {item.role}
-              </div>
-              <div className="text-base font-bold text-brand-navy font-sans">
-                {item.name}
+              {/* Anchored to bottom of card */}
+              <div className="mt-auto relative z-10">
+                <div className="text-[10px] font-extrabold text-brand-gold tracking-widest mb-0.5 font-sans uppercase">
+                  {item.role}
+                </div>
+                <div className="text-[14px] font-bold text-brand-navy font-sans">
+                  {item.name}
+                </div>
               </div>
             </div>
           ))}
         </div>
+
       </Container>
     </Section>
   );
