@@ -107,7 +107,7 @@ export default function PillarsSection() {
         {/* RIGHT COLUMN: HQ IMAGE SHOWCASE */}
         <div className="w-full relative min-h-[250px] lg:h-auto rounded-[3px] shadow-md overflow-hidden bg-slate-50">
           <img 
-            src="/assets/corporate-headquarters.jpg.png" 
+            src="/assets/corporate-headquarters-new.jpg.png.png" 
             alt="Bhakti Corporate Headquarters" 
             className="absolute inset-0 w-full h-full object-cover block"
           />

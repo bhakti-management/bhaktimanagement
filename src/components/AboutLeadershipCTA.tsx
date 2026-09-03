@@ -30,7 +30,7 @@ export default function AboutLeadershipCTA() {
                   <div className="relative w-full aspect-[3/4] overflow-hidden rounded-[3px] shadow-sm bg-white">
                     {/* object-contain ensures the image fits perfectly without cropping */}
                     <img 
-                      src="/assets/founder.jpg.png" 
+                      src="/assets/founder-new.jpg.png.png" 
                       alt="Col. (Dr.) Bhaktidev Gupta" 
                       className="absolute inset-0 w-full h-full object-contain block" 
                     />
